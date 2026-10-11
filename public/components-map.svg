@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" width="1200" height="720" role="img" aria-labelledby="t d">
+  <title id="t">VC Pipeline Intelligence — Components Map</title>
+  <desc id="d">Vercel Cron and the Run-now button trigger chunked serverless functions. Ingest pulls live evidence from Google News RSS, GDELT, blog RSS, Firecrawl (fallback) and optionally LinkedIn via Apify; Gemini Flash classifies it into the signals table. Score computes a deterministic follow-up score, Gemini Flash drafts the next move, and only the four signal columns of vcs are written via the update_vc_signals RPC. The dashboard reads Supabase server-side; Vikram edits manual columns in Supabase.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10z" fill="#9097a1"/>
+    </marker>
+    <marker id="al" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10z" fill="#d4ff3f"/>
+    </marker>
+    <radialGradient id="glow" cx="20%" cy="0%" r="70%">
+      <stop offset="0" stop-color="#d4ff3f" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#d4ff3f" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      .t{font:500 14px Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;fill:#ecedee}
+      .tl{font:500 14px Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;fill:#d4ff3f}
+      .s{font:12px Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;fill:#9097a1}
+      .m{font:11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#9097a1}
+      .ml{font:11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#d4ff3f}
+      .k{font:600 10.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.14em;fill:#5d636c}
+      .kg{font:600 10.5px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.14em;fill:#3ddc97}
+      .box{fill:#111317;stroke:rgba(255,255,255,.13)}
+      .ai{fill:#151a0b;stroke:#d4ff3f;stroke-opacity:.55}
+      .cron{fill:#1a140a;stroke:#ffb547;stroke-opacity:.5}
+      .ln{fill:none;stroke:#9097a1;stroke-width:1.3}
+      .lnl{fill:none;stroke:#d4ff3f;stroke-width:1.5}
+    </style>
+  </defs>
+
+  <rect width="1200" height="720" fill="#07080a"/>
+  <rect width="1200" height="720" fill="url(#glow)"/>
+
+  <text x="30" y="34" class="k">COMPONENTS MAP · VC PIPELINE INTELLIGENCE</text>
+
+  <!-- Triggers -->
+  <rect x="30" y="56" width="230" height="46" rx="23" class="box"/>
+  <text x="50" y="84" class="t">▶ Run now</text><text x="130" y="84" class="m">POST /api/run</text>
+  <rect x="300" y="56" width="260" height="46" rx="23" class="cron"/>
+  <text x="320" y="77" class="t">Vercel Cron · ingest</text><text x="320" y="93" class="m">daily 06:00 IST</text>
+  <rect x="640" y="56" width="260" height="46" rx="23" class="cron"/>
+  <text x="660" y="77" class="t">Vercel Cron · score</text><text x="660" y="93" class="m">Mon &amp; Thu 07:00 IST</text>
+  <path d="M430 102 V146" class="ln" marker-end="url(#a)"/>
+  <path d="M770 102 V146" class="ln" marker-end="url(#a)"/>
+  <path d="M260 79 C285 79 285 120 330 146" class="ln" marker-end="url(#a)"/>
+  <text x="940" y="76" class="m">auth: Bearer CRON_SECRET</text>
+  <text x="940" y="92" class="m">      Bearer ADMIN_TOKEN</text>
+
+  <!-- Sources -->
+  <text x="30" y="140" class="k">LIVE SOURCES</text>
+  <rect x="30" y="150" width="230" height="58" rx="12" class="box"/>
+  <text x="46" y="174" class="t">Google News RSS</text><text x="46" y="194" class="s">person + firm-investment queries</text>
+  <rect x="30" y="220" width="230" height="58" rx="12" class="box"/>
+  <text x="46" y="244" class="t">GDELT DOC 2.0</text><text x="46" y="264" class="s">60-day window · ≤1 req / 5 s</text>
+  <rect x="30" y="290" width="230" height="58" rx="12" class="box"/>
+  <text x="46" y="314" class="t">Blog · Substack · Medium RSS</text><text x="46" y="334" class="s">vcs.blog_rss · item pubDate</text>
+  <rect x="30" y="360" width="230" height="58" rx="12" class="box"/>
+  <text x="46" y="384" class="t">Firecrawl /search</text><text x="46" y="404" class="s">only if no active signal · 72h cache</text>
+  <rect x="30" y="430" width="230" height="58" rx="12" class="box" stroke-dasharray="5 4"/>
+  <text x="46" y="454" class="t">LinkedIn via Apify</text><text x="46" y="474" class="s">optional · OFF unless APIFY_TOKEN</text>
+
+  <path d="M260 179 C282 179 280 205 298 205" class="ln" marker-end="url(#a)"/>
+  <path d="M260 249 C282 249 280 212 298 212" class="ln"/>
+  <path d="M260 319 C284 319 282 220 298 220" class="ln"/>
+  <path d="M260 389 C286 389 284 228 298 228" class="ln"/>
+  <path d="M260 459 C288 459 286 236 298 236" class="ln" stroke-dasharray="4 4"/>
+
+  <!-- Ingest -->
+  <rect x="300" y="150" width="260" height="110" rx="14" class="box"/>
+  <text x="318" y="176" class="t">/api/cron/ingest</text>
+  <text x="318" y="198" class="s">chunks of 8 VCs · self-chaining cursor</text>
+  <text x="318" y="216" class="s">needs real URL + published date</text>
+  <text x="318" y="234" class="s">dedupe (vc_id, md5(url)) · 300 s max</text>
+
+  <!-- Gemini classify -->
+  <rect x="300" y="300" width="260" height="86" rx="14" class="ai"/>
+  <text x="318" y="326" class="tl">Gemini Flash · classify</text>
+  <text x="318" y="347" class="s">batches of 8 · JSON responseSchema</text>
+  <text x="318" y="365" class="m">is_about_vc · type · relevance · summary</text>
+  <path d="M430 262 V298" class="lnl" marker-end="url(#al)" marker-start="url(#al)"/>
+
+  <!-- Score -->
+  <rect x="640" y="150" width="260" height="110" rx="14" class="box"/>
+  <text x="658" y="176" class="t">/api/cron/score</text>
+  <text x="658" y="198" class="s">scoring.ts — deterministic, no AI</text>
+  <text x="658" y="216" class="m">relevance × weight × recency</text>
+  <text x="658" y="234" class="s">+ momentum · status rules → bucket</text>
+
+  <!-- Gemini action -->
+  <rect x="640" y="300" width="260" height="86" rx="14" class="ai"/>
+  <text x="658" y="326" class="tl">Gemini Flash · next move</text>
+  <text x="658" y="347" class="s">≤30 words, cites top signal</text>
+  <text x="658" y="365" class="s">template fallback if Gemini fails</text>
+  <path d="M770 262 V298" class="lnl" marker-end="url(#al)" marker-start="url(#al)"/>
+
+  <!-- Supabase band -->
+  <rect x="280" y="520" width="650" height="176" rx="18" fill="#0b120f" stroke="#3ddc97" stroke-opacity=".35" stroke-dasharray="6 5"/>
+  <text x="300" y="545" class="kg">SUPABASE · POSTGRES · RLS ON · COLUMN GRANTS</text>
+
+  <rect x="300" y="560" width="150" height="116" rx="12" class="box"/>
+  <text x="316" y="586" class="t">signals</text>
+  <text x="316" y="606" class="s">raw evidence</text>
+  <text x="316" y="623" class="s">never deleted</text>
+  <text x="316" y="650" class="m">unique(vc_id,</text>
+  <text x="316" y="664" class="m">  url_hash)</text>
+
+  <rect x="465" y="560" width="135" height="52" rx="12" class="box"/>
+  <text x="480" y="582" class="t">search_cache</text><text x="480" y="600" class="m">Firecrawl 72h</text>
+  <rect x="465" y="624" width="135" height="52" rx="12" class="box"/>
+  <text x="480" y="646" class="t">runs</text><text x="480" y="664" class="m">audit + fingerprint</text>
+
+  <rect x="615" y="560" width="295" height="116" rx="12" class="box" stroke="#d4ff3f" stroke-opacity=".35"/>
+  <text x="631" y="586" class="t">vcs</text>
+  <text x="668" y="586" class="m">service_role UPDATE only on ↓</text>
+  <text x="631" y="608" class="ml">last_signal_date · signal_summary</text>
+  <text x="631" y="626" class="ml">follow_up_score · recommended_action</text>
+  <text x="631" y="650" class="s">manual cols (status, notes, history)</text>
+  <text x="631" y="666" class="s">→ permission denied for the pipeline</text>
+
+  <!-- flows into DB -->
+  <path d="M375 386 V556" class="ln" marker-end="url(#a)"/>
+  <text x="383" y="470" class="m">classified rows</text>
+  <path d="M452 600 C 600 600, 600 215, 638 215" class="ln" marker-end="url(#a)"/>
+  <text x="590" y="500" class="m" transform="rotate(-90 590 500)">60-day signals</text>
+  <path d="M770 386 V556" class="lnl" marker-end="url(#al)"/>
+  <text x="778" y="460" class="ml">RPC update_vc_signals()</text>
+  <text x="778" y="476" class="m">4 columns only</text>
+  <text x="778" y="492" class="m">fingerprint before/after ✓</text>
+
+  <!-- Outputs -->
+  <rect x="960" y="150" width="210" height="122" rx="14" class="box" stroke="#d4ff3f" stroke-opacity=".3"/>
+  <text x="978" y="176" class="t">Dashboard</text>
+  <text x="978" y="197" class="s">Next.js 15 on Vercel</text>
+  <text x="978" y="215" class="m">/  ·  /runs  ·  /about</text>
+  <text x="978" y="236" class="s">Reach out · Warm · Quiet</text>
+  <text x="978" y="254" class="s">notes shown read-only</text>
+  <path d="M925 540 C 960 470, 1000 360, 1050 276" class="ln" marker-end="url(#a)"/>
+  <text x="1002" y="430" class="m">server-side read</text>
+
+  <rect x="960" y="560" width="210" height="116" rx="14" class="box"/>
+  <text x="978" y="586" class="t">Vikram</text>
+  <text x="978" y="607" class="s">edits status, last contact,</text>
+  <text x="978" y="624" class="s">history &amp; notes in the</text>
+  <text x="978" y="641" class="s">Supabase Table Editor</text>
+  <path d="M958 618 H914" class="ln" marker-end="url(#a)"/>
+</svg>
