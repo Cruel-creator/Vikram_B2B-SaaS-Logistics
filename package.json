@@ -1,0 +1,36 @@
+{
+  "name": "vc-pipeline-intelligence",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Twice-weekly VC outreach intelligence for a Seed-stage B2B logistics SaaS founder.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "seed": "tsx scripts/seed.ts",
+    "pipeline": "tsx scripts/run-pipeline.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^2.28.0",
+    "@mendable/firecrawl-js": "^4.46.0",
+    "@supabase/supabase-js": "^2.117.3",
+    "fast-xml-parser": "^5.11.2",
+    "next": "^15.5.27",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "dotenv": "^18.0.7",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}

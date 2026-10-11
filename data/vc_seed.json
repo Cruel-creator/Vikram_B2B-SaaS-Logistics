@@ -1,0 +1,852 @@
+[
+  {
+    "name": "Sajith Pai",
+    "firm": "Blume Ventures",
+    "role": "Partner",
+    "thesis": "Seed-stage investor who writes extensively on Indian B2B/SaaS go-to-market and the 'India 1/2/3' market structure that shapes how Indian B2B software sells.",
+    "focus_tags": [
+      "seed",
+      "B2B SaaS",
+      "India GTM",
+      "market structure"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://blume.vc",
+    "blog_rss": "https://sajithpai.com/feed/",
+    "linkedin_url": "https://www.linkedin.com/in/sajithpai/",
+    "verified_source": "https://blume.vc/team/sajith-pai"
+  },
+  {
+    "name": "Karthik Reddy",
+    "firm": "Blume Ventures",
+    "role": "Co-founder & Managing Partner",
+    "thesis": "Blume is one of India's most active seed funds, backing tech-led B2B and enterprise startups from their first institutional round.",
+    "focus_tags": [
+      "seed",
+      "B2B",
+      "enterprise",
+      "India"
+    ],
+    "location": "Mumbai, India",
+    "firm_website": "https://blume.vc",
+    "blog_rss": "https://blume.vc/commentaries/feed.xml",
+    "linkedin_url": "https://www.linkedin.com/in/karthikreddyb/",
+    "verified_source": "https://blume.vc/team/karthik-reddy"
+  },
+  {
+    "name": "Prayank Swaroop",
+    "firm": "Accel (India)",
+    "role": "Partner",
+    "thesis": "Early-stage investor in Indian SaaS, developer tools and marketplaces building for global and domestic enterprise buyers.",
+    "focus_tags": [
+      "early stage",
+      "SaaS",
+      "marketplaces",
+      "AI"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://www.accel.com",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/prayank",
+    "verified_source": "https://www.accel.com/team/prayank-swaroop"
+  },
+  {
+    "name": "Barath Shankar Subramanian",
+    "firm": "Accel (India)",
+    "role": "Partner",
+    "thesis": "Backs early-stage enterprise, AI and fintech startups, and is involved in Accel Atoms, Accel's pre-seed program for India and Southeast Asia.",
+    "focus_tags": [
+      "pre-seed",
+      "enterprise",
+      "AI",
+      "Accel Atoms"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://www.accel.com",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/barathshankar/",
+    "verified_source": "https://www.accel.com/team/barath-shankar-subramanian"
+  },
+  {
+    "name": "Mukul Arora",
+    "firm": "Elevation Capital",
+    "role": "Co-Managing Partner",
+    "thesis": "Invests in Indian consumer and SaaS/enterprise-AI companies from venture stage onward, and publishes perspectives on Indian startup markets.",
+    "focus_tags": [
+      "SaaS",
+      "enterprise AI",
+      "venture",
+      "India"
+    ],
+    "location": "Delhi NCR, India",
+    "firm_website": "https://elevationcapital.com",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/mukularora1/",
+    "verified_source": "https://elevationcapital.com/team/mukul-arora"
+  },
+  {
+    "name": "Venkatesh Peddi",
+    "firm": "Chiratae Ventures",
+    "role": "Managing Director",
+    "thesis": "Chiratae backs early-stage Indian technology companies, including B2B SaaS and enterprise platforms that sell to Indian and global businesses.",
+    "focus_tags": [
+      "early stage",
+      "B2B SaaS",
+      "enterprise tech",
+      "India"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://www.chiratae.com",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/venkateshpeddi/",
+    "verified_source": "https://www.chiratae.com/team/"
+  },
+  {
+    "name": "Alok Goyal",
+    "firm": "Stellaris Venture Partners",
+    "role": "Co-founder & Partner",
+    "thesis": "Former SAP India COO who backs enterprise software from applications to infrastructure, with a current thesis on AI-native services reinventing enterprise workflows.",
+    "focus_tags": [
+      "enterprise software",
+      "B2B SaaS",
+      "AI-native services",
+      "seed/Series A"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://www.stellarisvp.com",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/alok-goyal-536557/",
+    "verified_source": "https://www.stellarisvp.com/team/alok-goyal"
+  },
+  {
+    "name": "Ritesh Banglani",
+    "firm": "Stellaris Venture Partners",
+    "role": "Co-founder & Partner",
+    "thesis": "Invests in fintech, mobility and software companies solving uniquely Indian problems, which makes him a natural fit for logistics and mobility SaaS.",
+    "focus_tags": [
+      "mobility",
+      "software",
+      "fintech",
+      "India-specific problems"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://www.stellarisvp.com",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/riteshbanglani/",
+    "verified_source": "https://www.stellarisvp.com/team/ritesh-banglani"
+  },
+  {
+    "name": "Gaurav Chaturvedi",
+    "firm": "Kae Capital",
+    "role": "General Partner",
+    "thesis": "Focuses on B2B SaaS, B2B commerce and system-led enterprise software, and helps founders with product strategy and go-to-market structure.",
+    "focus_tags": [
+      "B2B SaaS",
+      "B2B commerce",
+      "enterprise",
+      "early stage"
+    ],
+    "location": "Mumbai, India",
+    "firm_website": "https://www.kae-capital.com",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/chaturvedig/",
+    "verified_source": "https://www.kae-capital.com/our-team/gaurav-chaturvedi/"
+  },
+  {
+    "name": "Pranav Pai",
+    "firm": "3one4 Capital",
+    "role": "Founding Partner & Chief Investment Officer",
+    "thesis": "Has led 70+ seed and venture investments in India and the US across enterprise software and deep tech, and writes publicly on Indian tech policy.",
+    "focus_tags": [
+      "seed",
+      "enterprise software",
+      "deep tech",
+      "India"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://www.3one4capital.com",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/pranavpai/",
+    "verified_source": "https://www.3one4capital.com/team/pranav-pai"
+  },
+  {
+    "name": "Anurag Ramdasan",
+    "firm": "3one4 Capital",
+    "role": "Partner (Head of Investments)",
+    "thesis": "Heads investments at 3one4 and has directly invested in and managed 30+ portfolio companies, including early-stage B2B and SaaS businesses.",
+    "focus_tags": [
+      "seed",
+      "SaaS",
+      "B2B",
+      "India"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://www.3one4capital.com",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/anuragramdasan/",
+    "verified_source": "https://www.3one4capital.com/team/anurag-ramdasan"
+  },
+  {
+    "name": "Shripati Acharya",
+    "firm": "Prime Venture Partners",
+    "role": "Founder & Managing Partner",
+    "thesis": "Prime is an early-stage fund backing Indian SaaS, fintech, healthtech and deep tech, with a heavy content and podcast presence.",
+    "focus_tags": [
+      "early stage",
+      "SaaS",
+      "fintech",
+      "deep tech"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://www.primevp.in",
+    "blog_rss": null,
+    "linkedin_url": null,
+    "verified_source": "https://www.primevp.in/team"
+  },
+  {
+    "name": "Amit Somani",
+    "firm": "Prime Venture Partners",
+    "role": "Managing Partner",
+    "thesis": "Former product leader at MakeMyTrip and Google who backs early-stage Indian SaaS and fintech, and appears often on Prime's podcast and blog.",
+    "focus_tags": [
+      "early stage",
+      "SaaS",
+      "product-led",
+      "fintech"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://www.primevp.in",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/thesomani",
+    "verified_source": "https://www.primevp.in/team/amit-somani"
+  },
+  {
+    "name": "Madhukar Sinha",
+    "firm": "India Quotient",
+    "role": "Founding Partner",
+    "thesis": "India Quotient is a seed fund for 'India-specific' businesses, including B2B models built around the realities of Bharat.",
+    "focus_tags": [
+      "seed",
+      "Bharat",
+      "B2B",
+      "India-specific"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://www.indiaquotient.in",
+    "blog_rss": "https://medium.com/feed/@IndiaQuotient",
+    "linkedin_url": "https://www.linkedin.com/in/madhukar-sinha-1288701/",
+    "verified_source": "https://www.indiaquotient.in/team/madhukar-sinha"
+  },
+  {
+    "name": "Anand Lunia",
+    "firm": "India Quotient",
+    "role": "Founding Partner",
+    "thesis": "Outspoken seed investor and writer on Indian market opportunities, focused on India-first businesses at the first institutional cheque.",
+    "focus_tags": [
+      "seed",
+      "India-first",
+      "contrarian",
+      "B2B"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://www.indiaquotient.in",
+    "blog_rss": "https://indiaquotient.substack.com/feed",
+    "linkedin_url": "https://www.linkedin.com/in/anand-lunia-9816a53/",
+    "verified_source": "https://www.indiaquotient.in/team/anand-lunia"
+  },
+  {
+    "name": "Chinmaya Sharma",
+    "firm": "Info Edge Ventures",
+    "role": "Partner",
+    "thesis": "Info Edge Ventures backs early-stage Indian tech companies and brings Info Edge's operating playbook for B2B and marketplace businesses.",
+    "focus_tags": [
+      "early stage",
+      "B2B",
+      "marketplaces",
+      "India"
+    ],
+    "location": "India",
+    "firm_website": "https://www.infoedgeventures.in",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/chinmaya-sharma/",
+    "verified_source": "https://www.infoedgeventures.in/team"
+  },
+  {
+    "name": "Kitty Agarwal",
+    "firm": "Info Edge Ventures",
+    "role": "Partner",
+    "thesis": "Early-stage investor at Info Edge Ventures, backing Indian technology startups including B2B and SaaS models.",
+    "focus_tags": [
+      "early stage",
+      "B2B",
+      "SaaS",
+      "India"
+    ],
+    "location": "India",
+    "firm_website": "https://www.infoedgeventures.in",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/kitty-agarwal-b5541759/",
+    "verified_source": "https://www.infoedgeventures.in/team"
+  },
+  {
+    "name": "Rajan Anandan",
+    "firm": "Peak XV Partners",
+    "role": "Managing Director (Seed/Surge)",
+    "thesis": "Leads Peak XV's seed and early-stage efforts, including the Surge program, backing Indian B2B and AI startups from inception.",
+    "focus_tags": [
+      "seed",
+      "Surge",
+      "B2B",
+      "AI"
+    ],
+    "location": "India",
+    "firm_website": "https://www.peakxv.com",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/rajan-anandan-2481b814/",
+    "verified_source": "https://www.peakxv.com/team/rajan-anandan"
+  },
+  {
+    "name": "Hemant Mohapatra",
+    "firm": "Lightspeed India Partners",
+    "role": "Partner",
+    "thesis": "Former a16z investor who backs India-built B2B, data-infrastructure and AI software companies with global ambitions, and writes regularly on Medium.",
+    "focus_tags": [
+      "B2B software",
+      "infrastructure",
+      "AI",
+      "global SaaS from India"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://lsvp.com",
+    "blog_rss": "https://medium.com/feed/@mohapatrahemant",
+    "linkedin_url": "https://www.linkedin.com/in/hemantmohapatra/",
+    "verified_source": "https://lsvp.com/team-member/hemant-mohapatra/"
+  },
+  {
+    "name": "Harsha Kumar",
+    "firm": "Lightspeed India Partners",
+    "role": "Partner",
+    "thesis": "Enterprise-focused investor covering India and Southeast Asia who says she invests in people more than companies.",
+    "focus_tags": [
+      "enterprise",
+      "SaaS",
+      "India",
+      "Southeast Asia"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://lsvp.com",
+    "blog_rss": "https://medium.com/feed/@harshakumar",
+    "linkedin_url": "https://in.linkedin.com/in/harshakumarlsip",
+    "verified_source": "https://lsvp.com/team-member/harsha-kumar/"
+  },
+  {
+    "name": "Rahul Taneja",
+    "firm": "Lightspeed India Partners",
+    "role": "Partner",
+    "thesis": "Invests in commerce and marketplace businesses across India and Southeast Asia, including supply-chain plays such as Wheelocity and Udaan.",
+    "focus_tags": [
+      "commerce",
+      "marketplaces",
+      "supply chain",
+      "India/SEA"
+    ],
+    "location": "New Delhi, India",
+    "firm_website": "https://lsvp.com",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/rahultaneja5/",
+    "verified_source": "https://lsvp.com/team-member/rahul-taneja/"
+  },
+  {
+    "name": "Vikram Vaidyanathan",
+    "firm": "Z47 (formerly Matrix Partners India)",
+    "role": "Managing Director",
+    "thesis": "Backs Indian fintech, enterprise/SaaS and AI software companies at early stages.",
+    "focus_tags": [
+      "enterprise",
+      "SaaS",
+      "fintech",
+      "AI"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://www.z47.com",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/vikram-vaidyanathan-0957572/",
+    "verified_source": "https://www.z47.com/team/vikram-vaidyanathan"
+  },
+  {
+    "name": "Rajiv Srivatsa",
+    "firm": "Antler India",
+    "role": "Partner",
+    "thesis": "Co-founder of Urban Ladder who now writes pre-seed and seed cheques at Antler India, backing founders from day zero, including B2B and SaaS teams.",
+    "focus_tags": [
+      "pre-seed",
+      "day zero",
+      "B2B",
+      "founder-first"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://www.antler.co/location/india",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/rajivsrivatsa/",
+    "verified_source": "https://www.antler.co/spokesperson/rajiv-srivatsa"
+  },
+  {
+    "name": "Vaibhav Domkundwar",
+    "firm": "Better Capital",
+    "role": "Founder & CEO",
+    "thesis": "A prolific pre-seed and seed investor in Indian and India-global startups, including B2B SaaS, who publishes annual letters and founder notes.",
+    "focus_tags": [
+      "pre-seed",
+      "seed",
+      "B2B SaaS",
+      "India-global"
+    ],
+    "location": "India",
+    "firm_website": "https://bettercapital.vc",
+    "blog_rss": "https://medium.com/feed/better-capital",
+    "linkedin_url": "https://www.linkedin.com/in/better",
+    "verified_source": "https://bettercapital.vc/"
+  },
+  {
+    "name": "Mark Kahn",
+    "firm": "Omnivore",
+    "role": "Managing Partner",
+    "thesis": "Backs agrifood-systems entrepreneurs in India, including agri supply chain, rural logistics and B2B commerce software.",
+    "focus_tags": [
+      "agri supply chain",
+      "rural logistics",
+      "agritech",
+      "seed/Series A"
+    ],
+    "location": "Mumbai, India",
+    "firm_website": "https://www.omnivore.vc",
+    "blog_rss": null,
+    "linkedin_url": null,
+    "verified_source": "https://www.omnivore.vc/team/mark-kahn/"
+  },
+  {
+    "name": "Manish Kheterpal",
+    "firm": "WaterBridge Ventures",
+    "role": "Managing Partner",
+    "thesis": "Sector-agnostic early-stage investor in Indian consumer and enterprise companies; portfolio includes B2B supply-chain plays like Fairdeal.market and DataWeave.",
+    "focus_tags": [
+      "early stage",
+      "enterprise",
+      "B2B commerce",
+      "India"
+    ],
+    "location": "India",
+    "firm_website": "https://waterbridge.vc",
+    "blog_rss": null,
+    "linkedin_url": null,
+    "verified_source": "https://www.waterbridge.vc/people/manish-kheterpal/"
+  },
+  {
+    "name": "Anup Gupta",
+    "firm": "Nexus Venture Partners",
+    "role": "Partner",
+    "thesis": "Invests in enterprise tech and financial services; portfolio includes operations SaaS such as MoveInSync (commute logistics), Unicommerce (e-commerce SaaS) and CapGrid (sourcing).",
+    "focus_tags": [
+      "enterprise SaaS",
+      "logistics-adjacent",
+      "B2B payments",
+      "early stage"
+    ],
+    "location": "Mumbai, India",
+    "firm_website": "https://www.nexusvp.com",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/guptaanup/",
+    "verified_source": "https://www.nexusvp.com/team/anup-gupta"
+  },
+  {
+    "name": "Vinay Bansal",
+    "firm": "Inflection Point Ventures",
+    "role": "Founder & CEO",
+    "thesis": "Runs one of India's largest angel/early-stage platforms, which frequently leads seed and pre-Series A rounds in B2B startups.",
+    "focus_tags": [
+      "seed",
+      "pre-Series A",
+      "angel network",
+      "B2B"
+    ],
+    "location": "Gurugram, India",
+    "firm_website": "https://ipventures.in",
+    "blog_rss": "https://ipventures.in/feed/",
+    "linkedin_url": null,
+    "verified_source": "https://cwv.yourstory.com/2025/01/from-chartered-accountant-to-venture-visionary-ipv-vinay-bansal"
+  },
+  {
+    "name": "Vani Kola",
+    "firm": "Kalaari Capital",
+    "role": "Managing Director",
+    "thesis": "Kalaari is an early-stage Indian VC that backs technology-led businesses, including B2B and enterprise platforms; Vani Kola is a prominent public voice on the Indian startup ecosystem.",
+    "focus_tags": [
+      "early stage",
+      "B2B",
+      "enterprise",
+      "India"
+    ],
+    "location": "Bengaluru, India",
+    "firm_website": "https://kalaari.com",
+    "blog_rss": null,
+    "linkedin_url": null,
+    "verified_source": "https://kalaari.com/teams"
+  },
+  {
+    "name": "Manav Garg",
+    "firm": "Together Fund",
+    "role": "Co-founder & Managing Partner",
+    "thesis": "Founder of Eka Software, a supply-chain, procurement and commodity SaaS company, who now backs India-built AI and SaaS companies selling globally.",
+    "focus_tags": [
+      "SaaS",
+      "AI",
+      "supply chain software",
+      "India-to-global"
+    ],
+    "location": "India",
+    "firm_website": "https://www.together.fund",
+    "blog_rss": "https://medium.com/feed/@scaletogether",
+    "linkedin_url": "https://www.linkedin.com/in/manav-garg-227254/",
+    "verified_source": "https://www.together.fund/team/manav-garg"
+  },
+  {
+    "name": "Julian Counihan",
+    "firm": "Schematic Ventures",
+    "role": "General Partner",
+    "thesis": "Seed-stage fund dedicated to supply chain, logistics, manufacturing and industrial-infrastructure software.",
+    "focus_tags": [
+      "seed",
+      "supply chain",
+      "logistics software",
+      "industrial"
+    ],
+    "location": "San Francisco, USA",
+    "firm_website": "https://schematicventures.com",
+    "blog_rss": "https://schematicventures.substack.com/feed",
+    "linkedin_url": "https://www.linkedin.com/in/juliancounihan",
+    "verified_source": "https://schematicventures.com/"
+  },
+  {
+    "name": "Santosh Sankar",
+    "firm": "Dynamo Ventures",
+    "role": "Co-founder & Managing Partner",
+    "thesis": "Pre-seed and seed fund focused on 'how we make, move and monetize the world's goods'; backers of Stord, Gatik and Sennder.",
+    "focus_tags": [
+      "pre-seed",
+      "seed",
+      "supply chain",
+      "mobility"
+    ],
+    "location": "Chattanooga, TN, USA",
+    "firm_website": "https://dynamo.vc",
+    "blog_rss": "https://dynamo.substack.com/feed",
+    "linkedin_url": "https://www.linkedin.com/in/santoshsankar/",
+    "verified_source": "https://dynamo.vc/about/santosh-sankar"
+  },
+  {
+    "name": "Jon Bradford",
+    "firm": "Dynamo Ventures",
+    "role": "Co-founder & Managing Partner",
+    "thesis": "Early-stage supply chain investor and accelerator pioneer, focused on where supply chain meets fintech, such as shipment-level trade finance.",
+    "focus_tags": [
+      "seed",
+      "supply chain",
+      "trade finance",
+      "Europe"
+    ],
+    "location": "Cambridge, UK",
+    "firm_website": "https://dynamo.vc",
+    "blog_rss": "https://dynamo.substack.com/feed",
+    "linkedin_url": "https://www.linkedin.com/in/jonbradford/",
+    "verified_source": "https://dynamo.vc/about/jon-bradford"
+  },
+  {
+    "name": "Ty Findley",
+    "firm": "Ironspring Ventures",
+    "role": "Co-Founder & General Partner",
+    "thesis": "Sector-focused early-stage VC backing digital-industrial startups across transport, logistics, manufacturing and construction.",
+    "focus_tags": [
+      "seed",
+      "logistics",
+      "transportation",
+      "industrial tech"
+    ],
+    "location": "USA",
+    "firm_website": "https://ironspring.com",
+    "blog_rss": "https://ironspring.com/feed/",
+    "linkedin_url": "https://www.linkedin.com/in/ty-findley-78500b20/",
+    "verified_source": "https://ironspring.com/team_ty_findley/"
+  },
+  {
+    "name": "Peter J. Holt",
+    "firm": "Ironspring Ventures",
+    "role": "Co-Founder & General Partner",
+    "thesis": "Backs founders innovating across the industrial supply chain, drawing on HOLT CAT's operating footprint in heavy industry.",
+    "focus_tags": [
+      "industrial supply chain",
+      "logistics",
+      "seed",
+      "operator network"
+    ],
+    "location": "San Antonio, TX, USA",
+    "firm_website": "https://ironspring.com",
+    "blog_rss": "https://ironspring.com/feed/",
+    "linkedin_url": "https://www.linkedin.com/in/peter-j-holt-28686426/",
+    "verified_source": "https://ironspring.com/team_peter_j_holt/"
+  },
+  {
+    "name": "Natan Reddy",
+    "firm": "Ironspring Ventures",
+    "role": "Principal",
+    "thesis": "Early-stage industrial-tech investor with particular depth in supply chain innovation; Ironspring's portfolio includes OneRail, Cargado and GoodShip.",
+    "focus_tags": [
+      "supply chain",
+      "freight tech",
+      "seed",
+      "industrial"
+    ],
+    "location": "New York, USA",
+    "firm_website": "https://ironspring.com",
+    "blog_rss": "https://ironspring.com/feed/",
+    "linkedin_url": "https://www.linkedin.com/in/natan-reddy-ab901036/",
+    "verified_source": "https://ironspring.com/team_natan-reddy/"
+  },
+  {
+    "name": "Reilly Brennan",
+    "firm": "Trucks Venture Capital",
+    "role": "Partner",
+    "thesis": "Seed fund for the future of transportation (trucking, freight, mobility); writes the widely read Future of Transportation (FoT) newsletter.",
+    "focus_tags": [
+      "seed",
+      "transportation",
+      "trucking",
+      "freight"
+    ],
+    "location": "San Francisco, USA",
+    "firm_website": "https://www.trucks.vc",
+    "blog_rss": null,
+    "linkedin_url": null,
+    "verified_source": "https://www.trucks.vc/about"
+  },
+  {
+    "name": "Puneeth Meruva",
+    "firm": "Trucks Venture Capital",
+    "role": "Partner",
+    "thesis": "Backs early-stage founders building transportation and logistics technology, from trucking to aerospace.",
+    "focus_tags": [
+      "seed",
+      "transportation",
+      "logistics tech",
+      "mobility"
+    ],
+    "location": "San Francisco, USA",
+    "firm_website": "https://www.trucks.vc",
+    "blog_rss": null,
+    "linkedin_url": null,
+    "verified_source": "https://www.trucks.vc/about"
+  },
+  {
+    "name": "Dayna Grayson",
+    "firm": "Construct Capital",
+    "role": "Co-founder & General Partner",
+    "thesis": "Early-stage fund transforming foundational industries: manufacturing, logistics and transportation, defense and energy.",
+    "focus_tags": [
+      "seed",
+      "logistics",
+      "manufacturing",
+      "foundational industries"
+    ],
+    "location": "Washington, DC, USA",
+    "firm_website": "https://www.construct.cap",
+    "blog_rss": null,
+    "linkedin_url": null,
+    "verified_source": "https://femwealth.substack.com/p/dayna-grayson-and-rachel-holts-construct"
+  },
+  {
+    "name": "Rachel Holt",
+    "firm": "Construct Capital",
+    "role": "Co-founder & General Partner",
+    "thesis": "Former Uber operations leader who backs early-stage software transforming logistics, transportation and other foundational industries.",
+    "focus_tags": [
+      "seed",
+      "logistics",
+      "transportation",
+      "operations software"
+    ],
+    "location": "USA",
+    "firm_website": "https://www.construct.cap",
+    "blog_rss": null,
+    "linkedin_url": null,
+    "verified_source": "https://femwealth.substack.com/p/dayna-grayson-and-rachel-holts-construct"
+  },
+  {
+    "name": "William (Will) O'Donnell",
+    "firm": "Prologis Ventures",
+    "role": "Managing Partner",
+    "thesis": "Corporate VC arm of the world's largest logistics-real-estate owner, investing in warehousing, fulfillment and supply-chain technology, with pilot access to Prologis customers.",
+    "focus_tags": [
+      "CVC",
+      "warehousing",
+      "fulfillment",
+      "supply chain tech"
+    ],
+    "location": "San Francisco, USA",
+    "firm_website": "https://www.prologisventures.com",
+    "blog_rss": null,
+    "linkedin_url": null,
+    "verified_source": "https://prologis.com/node/36906"
+  },
+  {
+    "name": "Christoph Janz",
+    "firm": "Point Nine",
+    "role": "Partner",
+    "thesis": "Seed-stage B2B SaaS and marketplace specialist, known for SaaS-metrics writing; backs SaaS founders globally, including India-founded teams.",
+    "focus_tags": [
+      "seed",
+      "B2B SaaS",
+      "marketplaces",
+      "SaaS metrics"
+    ],
+    "location": "Berlin, Germany",
+    "firm_website": "https://www.pointnine.com",
+    "blog_rss": "https://writing.pointnine.com/feed",
+    "linkedin_url": null,
+    "verified_source": "https://www.pointnine.com/team"
+  },
+  {
+    "name": "Elizabeth Yin",
+    "firm": "Hustle Fund",
+    "role": "Co-Founder & General Partner",
+    "thesis": "Pre-seed/seed fund writing small, fast cheques into software founders worldwide; a very prolific public writer on fundraising.",
+    "focus_tags": [
+      "pre-seed",
+      "seed",
+      "B2B software",
+      "global"
+    ],
+    "location": "San Carlos, CA, USA",
+    "firm_website": "https://www.hustlefund.vc",
+    "blog_rss": "https://hustlefund.substack.com/feed",
+    "linkedin_url": "https://www.linkedin.com/in/elizabethyin/",
+    "verified_source": "https://www.hustlefund.vc/team"
+  },
+  {
+    "name": "Shiyan Koh",
+    "firm": "Hustle Fund",
+    "role": "Co-Founder & General Partner",
+    "thesis": "Leads Hustle Fund's Asia investing; backs execution-driven pre-seed and seed software startups in Southeast and South Asia.",
+    "focus_tags": [
+      "pre-seed",
+      "Asia",
+      "B2B software",
+      "execution"
+    ],
+    "location": "Singapore",
+    "firm_website": "https://www.hustlefund.vc",
+    "blog_rss": "https://hustlefund.substack.com/feed",
+    "linkedin_url": "https://www.linkedin.com/in/shiyankoh/",
+    "verified_source": "https://www.hustlefund.vc/team"
+  },
+  {
+    "name": "Andreas Schwarzenbrunner",
+    "firm": "Speedinvest",
+    "role": "General Partner (Climate Tech & Industrial Tech)",
+    "thesis": "Leads Speedinvest's industrial tech team, backing pre-seed and seed enterprise software for supply chains, manufacturing, construction and energy.",
+    "focus_tags": [
+      "seed",
+      "supply chain",
+      "industrial tech",
+      "enterprise software"
+    ],
+    "location": "Paris, France",
+    "firm_website": "https://www.speedinvest.com",
+    "blog_rss": null,
+    "linkedin_url": "https://at.linkedin.com/in/andreas-schwarzenbrunner",
+    "verified_source": "https://www.speedinvest.com/team-members/andreas-schwarzenbrunner"
+  },
+  {
+    "name": "Rudina Seseri",
+    "firm": "Glasswing Ventures",
+    "role": "Founder & Managing Partner",
+    "thesis": "Early-stage AI-native enterprise investor whose focus areas include supply chain management; writes the weekly 'AI Atlas' series.",
+    "focus_tags": [
+      "AI",
+      "enterprise software",
+      "supply chain",
+      "early stage"
+    ],
+    "location": "Boston, USA",
+    "firm_website": "https://glasswing.vc",
+    "blog_rss": "https://glasswing.vc/feed/",
+    "linkedin_url": null,
+    "verified_source": "https://glasswing.vc/team/"
+  },
+  {
+    "name": "Adam Grosser",
+    "firm": "UP.Partners",
+    "role": "Chairman & Managing Partner",
+    "thesis": "Invests in physical-world technology (mobility, logistics and transportation infrastructure) through its 'Kinetic Age' thesis.",
+    "focus_tags": [
+      "mobility",
+      "logistics",
+      "physical-world tech",
+      "transportation"
+    ],
+    "location": "USA",
+    "firm_website": "https://up.partners",
+    "blog_rss": "https://up.partners/feed/",
+    "linkedin_url": null,
+    "verified_source": "https://up.partners/?p=4052"
+  },
+  {
+    "name": "Greg Reichow",
+    "firm": "Eclipse",
+    "role": "Partner",
+    "thesis": "Former Tesla production VP who backs companies modernizing essential industries, including operational intelligence for the physical economy, manufacturing and supply chains.",
+    "focus_tags": [
+      "supply chain",
+      "manufacturing",
+      "physical economy",
+      "industrial software"
+    ],
+    "location": "Palo Alto, USA",
+    "firm_website": "https://eclipse.capital",
+    "blog_rss": null,
+    "linkedin_url": null,
+    "verified_source": "https://eclipse.capital/team"
+  },
+  {
+    "name": "Amit Anand",
+    "firm": "Jungle Ventures",
+    "role": "Founding Partner & Managing Director",
+    "thesis": "Singapore-based fund backing South and Southeast Asian startups, including B2B SaaS companies from India that expand regionally and globally.",
+    "focus_tags": [
+      "India",
+      "Southeast Asia",
+      "B2B SaaS",
+      "early stage"
+    ],
+    "location": "Singapore",
+    "firm_website": "https://www.jungle.vc",
+    "blog_rss": "https://medium.com/feed/jungle-ventures",
+    "linkedin_url": "https://www.linkedin.com/in/amit-anand-6b72903/",
+    "verified_source": "https://www.jungle.vc/team/amit-anand"
+  },
+  {
+    "name": "Paul Santos",
+    "firm": "Wavemaker Partners",
+    "role": "Managing Partner",
+    "thesis": "Singapore-based early-stage fund backing enterprise and B2B technology for emerging Asian markets, a natural co-investor for Indian B2B SaaS expanding into Southeast Asia.",
+    "focus_tags": [
+      "seed",
+      "B2B",
+      "enterprise",
+      "Southeast Asia"
+    ],
+    "location": "Singapore",
+    "firm_website": "https://www.wavemaker.vc",
+    "blog_rss": null,
+    "linkedin_url": "https://www.linkedin.com/in/b-paul-santos-b18a052/",
+    "verified_source": "https://www.wavemaker.vc/team"
+  }
+]
