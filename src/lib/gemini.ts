@@ -78,7 +78,9 @@ export async function generateJson<T>(prompt: string, schema: Schema, maxAttempt
           }
           if (status === 429 || (status !== undefined && status >= 500) || e instanceof SyntaxError) {
             if (attempt < maxAttempts - 1) {
-              await sleep(retryDelayMs(e, attempt));
+              const wait = retryDelayMs(e, attempt);
+              console.warn(`[gemini] ${model} ${status ?? "parse"} → retry in ${Math.round(wait / 1000)}s`);
+              await sleep(wait);
               continue;
             }
             break; // quota exhausted on this model → next model has its own quota
@@ -155,7 +157,12 @@ FOUNDER CONTEXT: first-time founder raising a Seed round for a B2B logistics Saa
 For each item return:
 - is_about_vc: true ONLY if the item is clearly about THIS investor at THIS firm (they wrote it, are quoted/interviewed, spoke at/attended an event, or made/led an investment), OR it is the investor's own blog/LinkedIn post, OR (found via a firm investment search) it reports a specific new investment, fund or announcement BY THIS FIRM. Return false for namesakes, a different firm with a similar name, passing list mentions with no substance, or generic market roundups.
 - signal_type: investment (they/their firm invested or led a round) | blog_post (they wrote an article/newsletter) | interview (quoted, podcast, interview) | event (speaking/attending/judging) | social_post (social media post) | news_mention (other coverage naming them) | other.
-- relevance 0..1 to the founder: 1.0 = logistics, supply chain, freight, mobility or B2B SaaS at seed/early stage in India; 0.7 = B2B SaaS / enterprise software / India seed generally; 0.4 = other tech investing or fundraising market commentary; 0.1 = unrelated (consumer, personal, politics). Use 0 when is_about_vc is false.
+- relevance 0..1 = how good a hook this item is for the founder's cold email (topic fit with logistics / supply chain / B2B SaaS / India seed). Use the full scale:
+    0.9–1.0 logistics, supply chain, freight, warehousing, inventory, fleet/mobility, trade or commerce infrastructure, or a B2B SaaS seed/Series A deal in India
+    0.7–0.8 B2B SaaS, enterprise software or AI-for-business deals and writing; B2B go-to-market, pricing, sales or seed-fundraising advice; India seed-stage investing activity
+    0.4–0.6 other tech investments (fintech, deep tech, healthtech, cybersecurity), startup-ecosystem or policy commentary, fund raises
+    0.1–0.3 consumer brands/D2C, personal, political or unrelated topics
+  Use 0 when is_about_vc is false.
 - summary: ≤25 words, factual, third person, from the given text only (e.g. "Led ₹40 cr Series A in Shiprocket-like freight platform X"). Empty string when is_about_vc is false.
 
 ITEMS

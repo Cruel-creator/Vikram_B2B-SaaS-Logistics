@@ -6,7 +6,7 @@
  *   npm run seed
  */
 import { config } from "dotenv";
-config({ path: ".env.local" });
+config({ path: ".env.local", override: true });
 
 import { readFileSync } from "node:fs";
 import { join } from "node:path";

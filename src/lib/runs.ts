@@ -15,7 +15,9 @@ export interface Step {
   offset: number;
 }
 
-export const INGEST_CHUNK = 8;
+// ~25–35 s per VC worst case (GDELT gate + 2–3 Gemini calls) → 5 VCs keeps each
+// invocation well under Vercel's 300 s limit.
+export const INGEST_CHUNK = 5;
 export const SCORE_CHUNK = 25;
 const MAX_STORED_ERRORS = 200;
 

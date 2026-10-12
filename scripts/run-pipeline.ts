@@ -6,7 +6,8 @@
  *   npm run pipeline -- ingest  # ingest only
  */
 import { config } from "dotenv";
-config({ path: ".env.local" });
+// override: a machine-level GEMINI_API_KEY must not shadow the project's key.
+config({ path: ".env.local", override: true });
 
 import { lastModelUsed } from "../src/lib/gemini";
 import { runToCompletion } from "../src/lib/runs";
