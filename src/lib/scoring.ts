@@ -172,10 +172,40 @@ const fmt = (iso: string) =>
 
 export const NO_SIGNAL_SUMMARY = "No observable signal in last 60 days";
 
-/** Top 1–2 signal summaries with dates. */
-export function buildSignalSummary(scored: ScoredSignal[]): string {
+const STORY_STOP = new Set([
+  "AI", "A", "The", "Series", "Seed", "Pre", "India", "Indian", "US", "USD", "Rs", "INR", "Cr", "Mn", "Inc", "Ltd",
+  "Capital", "Ventures", "Partners", "Fund", "B2B", "SaaS", "CEO", "Founder",
+]);
+
+/**
+ * Story key for collapsing the same event reported by several outlets: the first proper
+ * noun in the summary (then title) that isn't the investor's own name/firm or a generic
+ * word, e.g. "Polygrade", "Lumio". Falls back to the URL (always unique).
+ */
+export function storyKey(s: Pick<ScoreSignal, "summary" | "title" | "url">, exclude: string[] = []): string {
+  const ex = new Set(exclude.flatMap((e) => e.split(/[\s()]+/)).map((w) => w.toLowerCase()));
+  const text = `${s.summary ?? ""} ${s.title ?? ""}`;
+  const token = (text.match(/\b[A-Z][A-Za-z0-9&]{2,}\b/g) ?? []).find(
+    (t) => !STORY_STOP.has(t) && !ex.has(t.toLowerCase()),
+  );
+  return token ? token.toLowerCase() : s.url;
+}
+
+/** Keep the highest-ranked signal per story (input is already sorted by value). */
+export function uniqueStories<T extends Pick<ScoreSignal, "summary" | "title" | "url">>(scored: T[], exclude: string[] = []): T[] {
+  const seen = new Set<string>();
+  return scored.filter((s) => {
+    const k = storyKey(s, exclude);
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+}
+
+/** Top 1–2 signal summaries with dates (one per story). */
+export function buildSignalSummary(scored: ScoredSignal[], exclude: string[] = []): string {
   if (scored.length === 0) return NO_SIGNAL_SUMMARY;
-  return scored
+  return uniqueStories(scored, exclude)
     .slice(0, 2)
     .map((s) => `${fmt(s.published_at)}: ${(s.summary || s.title || "").trim()}`)
     .join(" · ");

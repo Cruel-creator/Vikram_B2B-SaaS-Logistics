@@ -1,6 +1,6 @@
 import { env } from "./env";
 import { splitTitle } from "./format";
-import { bucketFromStored, scoreVc, type ScoreSignal } from "./scoring";
+import { bucketFromStored, scoreVc, uniqueStories, type ScoreSignal } from "./scoring";
 import { db } from "./supabase";
 import type { Bucket, ContactStatus, RunRow, SignalType, Vc } from "./types";
 
@@ -130,7 +130,7 @@ export async function getDashboardData(): Promise<DashboardData> {
         activeCount: r.activeCount,
         coolingCount: r.coolingCount,
         explanation: r.explanation,
-        evidence: r.scored.slice(0, 4).map((s) => {
+        evidence: uniqueStories(r.scored, [vc.name, vc.firm]).slice(0, 4).map((s) => {
           const { headline, publisher } = splitTitle(s.title, s.url, s.source ?? "");
           return {
             url: s.url,

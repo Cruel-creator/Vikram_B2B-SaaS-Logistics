@@ -14,11 +14,14 @@ import type { Candidate, Vc } from "../src/lib/types";
 
 async function main() {
   const { data: vcs } = await db().from("vcs").select("*");
-  const { data: rows, error } = await db()
+  const { data: all, error } = await db()
     .from("signals")
-    .select("id, vc_id, url, title, snippet, source, published_at")
+    .select("id, vc_id, url, title, snippet, source, published_at, summary")
     .eq("is_about_vc", true);
   if (error) throw error;
+  // `npx tsx scripts/reclassify.ts pronouns` → only rows whose summary guessed a gendered pronoun.
+  const rows =
+    process.argv[2] === "pronouns" ? (all ?? []).filter((r) => /\b(he|she|him|her|his|hers)\b/i.test(r.summary ?? "")) : all;
 
   const byVc = new Map<string, typeof rows>();
   for (const r of rows ?? []) byVc.set(r.vc_id, [...(byVc.get(r.vc_id) ?? []), r]);

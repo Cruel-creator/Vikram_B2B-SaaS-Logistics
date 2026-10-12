@@ -190,7 +190,7 @@ export async function scoreAndWrite(
   const { error } = await db().rpc("update_vc_signals", {
     p_vc_id: vc.id,
     p_last_signal_date: result.lastSignalDate,
-    p_signal_summary: buildSignalSummary(result.scored),
+    p_signal_summary: buildSignalSummary(result.scored, [vc.name, vc.firm]),
     p_follow_up_score: result.score,
     p_recommended_action: action,
   });

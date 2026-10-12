@@ -163,7 +163,7 @@ For each item return:
     0.4–0.6 other tech investments (fintech, deep tech, healthtech, cybersecurity), startup-ecosystem or policy commentary, fund raises
     0.1–0.3 consumer brands/D2C, personal, political or unrelated topics
   Use 0 when is_about_vc is false.
-- summary: ≤25 words, factual, third person, from the given text only (e.g. "Led ₹40 cr Series A in Shiprocket-like freight platform X"). Empty string when is_about_vc is false.
+- summary: ≤25 words, factual, third person using the person's name (never guess gendered pronouns), from the given text only (e.g. "Led ₹40 cr Series A in Shiprocket-like freight platform X"). Empty string when is_about_vc is false.
 
 ITEMS
 ${listing}
@@ -223,7 +223,7 @@ Priority bucket: ${bucket}.
 Recent signals (use only these facts):
 ${signals}
 
-Rules: ≤30 words, imperative voice, cite the top signal concretely as the hook, tailor to the contact status (cold intro vs. polite nudge vs. continue conversation). No greetings, no quotes, no emojis.`;
+Rules: ≤30 words, imperative voice, cite the top signal concretely as the hook, tailor to the contact status (cold intro vs. polite nudge vs. continue conversation). Refer to the investor by first name or "they" — never guess gendered pronouns. No greetings, no quotes, no emojis.`;
   const out = await generateJson<{ action: string }>(prompt, actionSchema, 3);
   return out.action.split(/\s+/).slice(0, 34).join(" ").trim();
 }

@@ -91,6 +91,22 @@ test(">60d signals count for last_signal_date but not score", () => {
   assert.equal(buildSignalSummary(r.scored), NO_SIGNAL_SUMMARY);
 });
 
+test("same story from two outlets collapses to one; different deals stay separate", () => {
+  const r = scoreVc({
+    status: "yet_to_reach_out",
+    lastContactDate: null,
+    signals: [
+      sig({ age: 3, summary: "Polygrade raised $6.3 million to rebuild warranty claims with AI." }),
+      sig({ age: 4, summary: "Polygrade raised $6.3 million for its AI-powered warranty claims platform." }),
+      sig({ age: 5, summary: "Torch Systems raised $11.5 million to scale AI infrastructure monitoring." }),
+    ],
+    now: NOW,
+  });
+  const s = buildSignalSummary(r.scored, ["Dayna Grayson", "Construct Capital"]);
+  assert.equal((s.match(/Polygrade/g) ?? []).length, 1);
+  assert.match(s, /Torch Systems/);
+});
+
 test("signal summary has top 1–2 with dates", () => {
   const r = scoreVc({
     status: "yet_to_reach_out",
