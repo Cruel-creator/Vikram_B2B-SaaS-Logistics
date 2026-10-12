@@ -39,6 +39,12 @@ export function duration(start: string, end: string | null): string {
   return `${m}m ${String(s % 60).padStart(2, "0")}s`;
 }
 
+export const RUN_KIND_LABEL: Record<"ingest" | "score" | "full", string> = {
+  ingest: "Signal check",
+  score: "Ranking update",
+  full: "Full refresh",
+};
+
 export const STATUS_LABEL: Record<ContactStatus, string> = {
   yet_to_reach_out: "Not contacted",
   waiting_for_response: "Awaiting reply",

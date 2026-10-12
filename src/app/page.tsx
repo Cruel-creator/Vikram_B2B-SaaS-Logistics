@@ -6,7 +6,7 @@ import { HeroMotion } from "@/components/motion/HeroMotion";
 import { AnimatedNumber } from "@/components/motion-primitives/animated-number";
 import BlurText from "@/components/react-bits/BlurText";
 import { getDashboardData, type DashboardData } from "@/lib/dashboard";
-import { BUCKET_META, fmtDateTime, relTime, TZ } from "@/lib/format";
+import { BUCKET_META, fmtDateTime, relTime, RUN_KIND_LABEL, TZ } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -130,7 +130,9 @@ function RunCard({ data }: { data: DashboardData }) {
             {run ? relTime(run.finished_at ?? run.started_at) : "Never"}
           </div>
           <div className="mt-2 truncate text-[13px] text-slate">
-            {run ? `${fmtDateTime(run.finished_at ?? run.started_at)} IST · ${run.kind} · ${run.trigger}` : "No runs yet"}
+            {run
+              ? `${fmtDateTime(run.finished_at ?? run.started_at)} IST · ${RUN_KIND_LABEL[run.kind]} · ${run.trigger === "cron" ? "automatic" : "manual"}`
+              : "No runs yet"}
           </div>
         </div>
         <RunNow initiallyRunning={running} />
