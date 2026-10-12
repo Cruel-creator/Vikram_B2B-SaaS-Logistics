@@ -142,7 +142,7 @@
   <text x="978" y="343" class="s">contacts: firm site, exact match</text>
   <text x="978" y="361" class="s">Gemini draft + anti-slop lint</text>
   <text x="978" y="379" class="s">pdf-lib deck, cover per firm</text>
-  <text x="978" y="397" class="s">Gmail draft/send (admin token)</text>
+  <text x="978" y="397" class="s">preview → Open in Gmail (compose)</text>
   <text x="978" y="415" class="s">LinkedIn note: copy + open</text>
   <text x="978" y="433" class="m">tables: contacts · firm_brands</text>
 

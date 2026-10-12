@@ -1,7 +1,7 @@
 /**
  * Vikram's company facts used by email drafts and the deck.
- * Anything in [square brackets] is a placeholder: the UI highlights it and blocks "Send now"
- * until it is replaced, so no invented number ever reaches a real investor.
+ * Anything in [square brackets] is a placeholder: the email mockup highlights it and lists it
+ * under "Fill before sending", so no invented number ever reaches a real investor.
  * The deck's sample figures are DUMMY and every slide is labelled "Illustrative".
  */
 export const FOUNDER = {

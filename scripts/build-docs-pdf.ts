@@ -145,7 +145,7 @@ async function main() {
       ["Gemini Flash", "classify evidence; next move; outreach drafts (linted)", "lib/gemini.ts, lib/outreach/drafts.ts"],
       ["Scoring", "deterministic score, bucket, story de-duplication", "lib/scoring.ts (unit-tested)"],
       ["Score route", "writes 4 signal columns via update_vc_signals()", "api/cron/score, lib/pipeline.ts"],
-      ["Outreach", "firm-site contacts, deck cover per firm, Gmail draft/send, LinkedIn note", "lib/outreach/*, api/outreach/*, api/deck/*"],
+      ["Outreach", "firm-site contacts, email mockup, Open in Gmail, deck per firm, LinkedIn note", "lib/outreach/*, api/outreach/*, api/deck/*"],
       ["Notes", "Vikram edits notes/status in-app via update_vc_manual()", "api/notes (admin token)"],
       ["Supabase", "vcs, signals, runs, contacts, firm_brands, outreach_*; RLS on", "supabase/schema.sql"],
     ],
@@ -156,7 +156,7 @@ async function main() {
     "Manual edits use one SECURITY DEFINER function, update_vc_manual(), called only by /api/notes (enforced by tests/guardrails.test.ts).",
     "Fingerprint: md5 of all manual columns before and after every run, stored in runs.protected_check and shown as 'Manual columns unchanged'.",
     "No hallucinated signals: URL and date come from the source; unclassified items are never stored; same story from many outlets counts once.",
-    "Outreach: emails are copied verbatim from the firm's site (no guessing); drafts can't be sent while [placeholders] remain; Gmail actions need the admin token.",
+    "Outreach: emails are copied verbatim from the firm's site (no guessing); unknown founder numbers stay as highlighted [placeholders]; the app never sends mail, Vikram sends from Gmail.",
     "All AI is Gemini Flash; no Claude/OpenAI SDKs (enforced by tests).",
   ];
   z -= 28;

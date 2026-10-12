@@ -1,6 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { canRegenerate, getDraft, loadOutreach } from "@/lib/outreach/context";
-import { gmailConfigured } from "@/lib/outreach/gmail";
 import { deckFileName } from "@/lib/outreach/deck";
 import { FOUNDER } from "@/lib/outreach/founder";
 
@@ -33,9 +32,8 @@ async function payload(vcId: string, force: boolean) {
       domain: ctx.brand?.domain ?? null,
     },
     founder: { company: FOUNDER.company, oneLiner: FOUNDER.oneLiner, firstName: FOUNDER.firstName },
-    deck: { url: `/api/deck/${ctx.vc.id}`, fileName: deckFileName(ctx.vc.firm) },
+    deck: { url: `/deck/${ctx.vc.id}`, fileName: deckFileName(ctx.vc.firm) },
     draft,
-    gmail: gmailConfigured(),
   };
 }
 

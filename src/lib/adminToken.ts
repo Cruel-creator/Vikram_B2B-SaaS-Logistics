@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 
 const KEY = "vcpi_admin_token";
 
-/** Admin token remembered in this browser (shared by Run now, note edits and Gmail actions). */
+/** Admin token remembered in this browser (shared by Run now and note edits). */
 export function useAdminToken(): [string, (t: string) => void] {
   const [token, setTokenState] = useState("");
   useEffect(() => {
