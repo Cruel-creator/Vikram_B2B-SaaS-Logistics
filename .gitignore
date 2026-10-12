@@ -26,3 +26,6 @@ coverage/
 
 .vercel
 .env*
+
+# launch video renders
+brag-output/

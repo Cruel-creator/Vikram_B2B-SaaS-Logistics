@@ -114,7 +114,7 @@ export function candidateLinks(html: string, base: string): string[] {
   return [...out].slice(0, 4);
 }
 
-export function extractBrand(html: string, base: string): BrandAssets {
+export function extractBrand(html: string, base: string, firmName = ""): BrandAssets {
   const attr = (tag: string, name: string) => tag.match(new RegExp(`${name}\\s*=\\s*"([^"]*)"`, "i"))?.[1] ?? null;
   const abs = (u: string | null) => {
     if (!u) return null;
@@ -130,15 +130,37 @@ export function extractBrand(html: string, base: string): BrandAssets {
     if (/name\s*=\s*"theme-color"/i.test(m[0])) themeColor = attr(m[0], "content");
   }
 
-  // Prefer an explicit logo image in the page, then apple-touch-icon, then the largest non-ICO icon.
+  // The firm's OWN logo: an <img> that names the firm (alt/src/class) or sits in the site header and
+  // is marked "logo". VC homepages are full of portfolio logos, so a bare "logo" match isn't enough.
+  // Falls back to apple-touch-icon / the largest non-ICO icon, which always belong to the site.
+  const tokens = [
+    ...firmName
+      .replace(/\([^)]*\)/g, " ")
+      .toLowerCase()
+      .split(/[^a-z0-9]+/)
+      .filter((w) => w.length >= 3 && !["ventures", "venture", "capital", "partners", "fund", "india", "the"].includes(w)),
+    rootDomain(base).split(".")[0],
+  ];
+  const headerEnd = (() => {
+    const i = html.search(/<\/header>/i);
+    return i > 0 ? i : Math.min(html.length, 6000);
+  })();
   let logo: string | null = null;
+  let best = 0;
   for (const m of html.matchAll(/<img[^>]+>/gi)) {
     const tag = m[0];
     const src = attr(tag, "src") ?? attr(tag, "data-src");
-    const hint = `${attr(tag, "alt") ?? ""} ${attr(tag, "class") ?? ""} ${src ?? ""}`;
-    if (src && /logo/i.test(hint) && !/^data:image\/gif/i.test(src)) {
-      logo = abs(src);
-      break;
+    if (!src || /^data:image\/gif/i.test(src)) continue;
+    const hint = `${attr(tag, "alt") ?? ""} ${attr(tag, "class") ?? ""} ${src}`.toLowerCase();
+    const names = tokens.some((t) => hint.includes(t));
+    const inHeader = (m.index ?? Infinity) < headerEnd;
+    const isLogo = /logo/.test(hint);
+    const score = (names ? 3 : 0) + (inHeader && isLogo ? 2 : 0) + (isLogo ? 1 : 0);
+    if ((names && isLogo) || (inHeader && isLogo)) {
+      if (score > best) {
+        best = score;
+        logo = abs(src);
+      }
     }
   }
   if (!logo) {

@@ -336,7 +336,7 @@ function PanelBody({ vcId, onClose }: { vcId: string; onClose: () => void }) {
                 </a>
               </div>
               <Field label="Connection note" className="mt-4">
-                <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={4} className="w-full resize-y rounded-[20px] border border-line bg-canvas px-4 py-3 text-[14.5px] leading-[1.55] outline-none transition-[border-color] duration-150 focus:border-ink/40" />
+                <textarea value={note} onChange={(e) => setNote(e.target.value)} rows={6} className="w-full resize-y rounded-[20px] border border-line bg-canvas px-4 py-3 text-[14.5px] leading-[1.55] outline-none transition-[border-color] duration-150 [field-sizing:content] focus:border-ink/40" />
               </Field>
               <div className="mt-1.5 flex items-center justify-between px-1">
                 <span className={`tnum text-[12px] ${note.length > 300 ? "text-bad" : "text-slate"}`}>{note.length}/300</span>

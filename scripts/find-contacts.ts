@@ -61,6 +61,10 @@ async function logoToPng(url: string): Promise<{ png: string; accent: string | n
       if (!usable(hex)) continue;
       buckets.set(hex, (buckets.get(hex) ?? 0) + 1);
     }
+    // Reject blank/near-empty images (e.g. inline SVGs that render nothing) — text fallback is better.
+    let opaque = 0;
+    for (let i = 3; i < data.length; i += info.channels) if (data[i] > 128) opaque++;
+    if (opaque / (info.width * info.height) < 0.03) return null;
     const top = [...buckets.entries()].sort((a, b) => b[1] - a[1])[0];
     return { png: png.toString("base64"), accent: top && top[1] > 30 ? top[0] : null };
   } catch {
@@ -120,7 +124,7 @@ async function main() {
     const domain = rootDomain(site);
 
     // Brand: logo + accent (theme-color if saturated, else the logo's dominant colour).
-    const brand = extractBrand(home.html, site);
+    const brand = extractBrand(home.html, site, firm);
     let logoPng: string | null = null;
     let accent: string | null = usable(brand.themeColor) ? brand.themeColor : null;
     if (brand.logoUrl) {
