@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Board } from "@/components/Board";
 import { RunNow } from "@/components/RunNow";
-import { CheckIcon } from "@/components/ui";
 import { HeroBackdrop } from "@/components/motion/HeroBackdrop";
 import { HeroMotion } from "@/components/motion/HeroMotion";
 import { AnimatedNumber } from "@/components/motion-primitives/animated-number";
@@ -55,9 +54,6 @@ export default async function Home() {
               <a href="#reach_out" className="btn btn-ink">
                 See this week&apos;s list
               </a>
-              <Link href="/about" className="btn btn-ghost">
-                How scoring works
-              </Link>
             </div>
           </div>
           <div data-hero className="pointer-events-auto min-w-0">
@@ -81,7 +77,6 @@ export default async function Home() {
           <div className="mt-16">
             <Board vcs={data.vcs} />
           </div>
-          <FormulaSection />
         </>
       )}
     </>
@@ -152,11 +147,9 @@ function RunCard({ data }: { data: DashboardData }) {
           pc?.unchanged ? "bg-go-tint text-go" : pc ? "bg-[#FDECEA] text-bad" : "bg-canvas text-slate"
         }`}
       >
-        <span className="flex items-center gap-2 font-medium">
-          {pc?.unchanged ? <CheckIcon /> : null}
+        <span className="font-medium">
           {pc?.unchanged ? "Manual columns unchanged ✓" : pc ? "Manual columns changed during run" : "Manual-column check pending"}
         </span>
-        {pc?.after_hash && <span className="tnum hidden text-[11.5px] opacity-70 sm:inline">md5 {pc.after_hash.slice(0, 8)}</span>}
       </div>
       <Link href="/runs" className="mt-4 inline-flex min-h-10 items-center gap-1 text-[13.5px] font-medium text-charcoal hover:text-ink">
         <span className="link-underline">View run log</span> <span aria-hidden>→</span>
@@ -246,41 +239,6 @@ function PipelineStrip({
           <AnimatedNumber as="div" value={relevant} className="mt-3 text-[44px] font-medium leading-none tracking-[-0.03em]" />
           <p className="mt-2 text-[13px] leading-[1.45] text-slate">Verified as about the right person by Gemini</p>
         </div>
-      </div>
-    </section>
-  );
-}
-
-function FormulaSection() {
-  return (
-    <section data-reveal className="card mt-4 overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.35fr]">
-        <div className="border-b border-line p-8 sm:p-10 lg:border-b-0 lg:border-r">
-          <div className="eyebrow mb-5">Scoring · deterministic</div>
-          <h3 className="text-[32px] leading-[1.1]">No black box. Every point is explainable.</h3>
-          <p className="mt-4 text-[15px] leading-[1.55] text-charcoal">
-            Gemini Flash only <span className="font-medium">classifies</span> fetched evidence and drafts the next move. The
-            score is plain arithmetic, so the same inputs always give the same rank.
-          </p>
-          <Link href="/about" className="btn btn-ghost mt-7">
-            Read the method
-          </Link>
-        </div>
-        <pre className="tnum min-w-0 overflow-x-auto bg-lifted p-8 font-sans text-[13.5px] leading-[1.9] text-charcoal sm:p-10">
-          <span className="text-slate">{"// per relevant signal (is_about_vc = true)"}</span>
-          {"\n"}value   = relevance × type_weight × recency(age)
-          {"\n"}recency = <span className="text-go">0–30d</span> 1.0 − 0.3·age/30 · <span className="text-watch">31–60d</span> 0.4 −
-          0.3·(age−30)/30
-          {"\n"}base    = max(value) + min(0.15, 0.05 × (active − 1))
-          {"\n"}
-          {"\n"}
-          <span className="text-slate">{"// contact status"}</span>
-          {"\n"}passed → 0 · waiting &lt;7d → cap 0.40 · waiting ≥14d + active → +0.10
-          {"\n"}score   = round(100 × clamp(base, 0, 1))
-          {"\n"}
-          <span className="text-go">reach out</span> ≥ 60 + active · <span className="text-watch">warm</span> 25–59 or cooling only ·{" "}
-          <span className="text-rest">quiet</span> otherwise
-        </pre>
       </div>
     </section>
   );

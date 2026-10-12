@@ -7,7 +7,6 @@ import { AnimatedBackground } from "@/components/motion-primitives/animated-back
 const LINKS = [
   { href: "/", label: "This week" },
   { href: "/runs", label: "Runs" },
-  { href: "/about", label: "How it works" },
 ];
 
 export function NavLinks() {
