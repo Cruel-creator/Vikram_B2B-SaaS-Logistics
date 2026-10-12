@@ -2,7 +2,7 @@
 
 > MESA Cohort C4 · Problem Statement 10
 
-**Live:** https://vikram-b2b-saas-logistics.vercel.app · **Components Map + scoring rubric (PDF):** [`docs/pipeline-intel-method.pdf`](docs/pipeline-intel-method.pdf) · Mermaid source: [`docs/components-map.md`](docs/components-map.md)
+**Live:** https://vikram-b2b-saas-logistics.vercel.app · **Run log (audit, not in Vikram's menu):** https://vikram-b2b-saas-logistics.vercel.app/runs · **Components Map + scoring rubric (PDF):** [`docs/pipeline-intel-method.pdf`](docs/pipeline-intel-method.pdf) · Mermaid source: [`docs/components-map.md`](docs/components-map.md)
 
 ## The problem
 

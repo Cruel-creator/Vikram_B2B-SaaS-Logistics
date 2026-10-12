@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Board } from "@/components/Board";
 import { RunNow } from "@/components/RunNow";
 import { HeroBackdrop } from "@/components/motion/HeroBackdrop";
@@ -153,9 +152,6 @@ function RunCard({ data }: { data: DashboardData }) {
           {pc?.unchanged ? "Manual columns unchanged ✓" : pc ? "Manual columns changed during run" : "Manual-column check pending"}
         </span>
       </div>
-      <Link href="/runs" className="mt-4 inline-flex min-h-10 items-center gap-1 text-[13.5px] font-medium text-charcoal hover:text-ink">
-        <span className="link-underline">View run log</span> <span aria-hidden>→</span>
-      </Link>
     </div>
   );
 }

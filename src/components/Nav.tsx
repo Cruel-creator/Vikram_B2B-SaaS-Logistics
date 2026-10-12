@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { NavLinks } from "./NavLinks";
 
 /** Floating pill nav: white, 999px radius, level-1 shadow, docked 16px below the viewport top. */
 export function Nav() {
@@ -8,9 +7,8 @@ export function Nav() {
       <div className="pointer-events-auto mx-auto flex h-14 w-full max-w-[1180px] items-center justify-between gap-3 rounded-full border border-line bg-surface/90 pl-5 pr-2 shadow-float backdrop-blur-md">
         <Link href="/" className="group flex min-h-10 items-center gap-2.5" aria-label="Pipeline Intel home">
           <Mark />
-          <span className="hidden text-[16px] font-medium tracking-[-0.02em] sm:inline">Pipeline Intel</span>
+          <span className="text-[16px] font-medium tracking-[-0.02em]">Pipeline Intel</span>
         </Link>
-        <NavLinks />
       </div>
     </header>
   );
