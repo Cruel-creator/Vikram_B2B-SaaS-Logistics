@@ -43,8 +43,8 @@
   <path d="M430 102 V146" class="ln" marker-end="url(#a)"/>
   <path d="M770 102 V146" class="ln" marker-end="url(#a)"/>
   <path d="M260 79 C285 79 285 120 330 146" class="ln" marker-end="url(#a)"/>
-  <text x="940" y="76" class="m">auth: Bearer CRON_SECRET</text>
-  <text x="940" y="92" class="m">      Bearer ADMIN_TOKEN</text>
+  <text x="940" y="76" class="m">cron: Bearer CRON_SECRET</text>
+  <text x="940" y="92" class="m">Run now: Bearer ADMIN_TOKEN</text>
 
   <!-- Sources -->
   <text x="30" y="140" class="k">LIVE SOURCES</text>
@@ -68,7 +68,7 @@
   <!-- Ingest -->
   <rect x="300" y="150" width="260" height="110" rx="14" class="box"/>
   <text x="318" y="176" class="t">/api/cron/ingest</text>
-  <text x="318" y="198" class="s">chunks of 5 VCs · self-chaining cursor</text>
+  <text x="318" y="198" class="s">5-VC chunks · hands off every ~3 min</text>
   <text x="318" y="216" class="s">needs real URL + published date</text>
   <text x="318" y="234" class="s">dedupe (vc_id, md5(url)) · 300 s max</text>
 
@@ -125,7 +125,7 @@
   <path d="M770 386 V556" class="lnl" marker-end="url(#al)"/>
   <text x="778" y="460" class="ml">RPC update_vc_signals()</text>
   <text x="778" y="476" class="m">4 columns only</text>
-  <text x="778" y="492" class="m">fingerprint before/after ✓</text>
+  <text x="778" y="492" class="m">fingerprint check ✓</text>
 
   <!-- Outputs -->
   <rect x="960" y="150" width="210" height="122" rx="14" class="box" stroke="#B84A12" stroke-opacity=".3"/>
@@ -142,7 +142,7 @@
   <text x="978" y="343" class="s">contacts: firm site, exact match</text>
   <text x="978" y="361" class="s">Gemini draft + anti-slop lint</text>
   <text x="978" y="379" class="s">pdf-lib deck, cover per firm</text>
-  <text x="978" y="397" class="s">preview → Open in Gmail (compose)</text>
+  <text x="978" y="397" class="s">preview → Open in Gmail</text>
   <text x="978" y="415" class="s">LinkedIn note: copy + open</text>
   <text x="978" y="433" class="m">tables: contacts · firm_brands</text>
 

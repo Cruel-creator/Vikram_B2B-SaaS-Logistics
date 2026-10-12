@@ -140,7 +140,7 @@ async function main() {
     [
       ["Component", "Responsibility", "Code"],
       ["Vercel Cron", "ingest daily 06:00 IST · score Mon & Thu 07:00 IST", "vercel.json"],
-      ["Ingest route", "5 VCs per invocation, self-chaining cursor, 300 s max", "api/cron/ingest, lib/runs.ts, lib/chain.ts"],
+      ["Ingest route", "5-VC chunks; each invocation hands off after ~3 min (2-3 per run)", "api/cron/ingest, lib/runs.ts, lib/chain.ts"],
       ["Sources", "Google News, GDELT, blog RSS, Firecrawl, LinkedIn (optional)", "lib/sources/*"],
       ["Gemini Flash", "classify evidence; next move; outreach drafts (linted)", "lib/gemini.ts, lib/outreach/drafts.ts"],
       ["Scoring", "deterministic score, bucket, story de-duplication", "lib/scoring.ts (unit-tested)"],

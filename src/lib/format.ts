@@ -1,4 +1,4 @@
-import type { Bucket, ContactStatus, SignalType } from "./types";
+import type { Bucket, ContactStatus, RunRow, SignalType } from "./types";
 
 export const TZ = "Asia/Kolkata";
 
@@ -112,3 +112,31 @@ export const SOURCE_LABEL: Record<string, string> = {
   linkedin: "LinkedIn",
   manual: "Manual",
 };
+
+/** Run errors that leave a VC un-updated. Anything else (a throttled source, a Gemini
+ *  fallback to the template) still completes the VC, so it is only noted. */
+export const VC_FATAL_ERROR_SOURCES = new Set(["ingest", "score", "supabase"]);
+
+const RATE_LIMITED = /rate limit|429|temporarily skipped/i;
+
+export type RunOutcome = { status: "complete" | "partial" | "failed" | "running"; note: string | null };
+
+/** What a finished run means for Vikram: complete unless a VC actually failed to update. */
+export function runOutcome(run: Pick<RunRow, "status" | "errors">): RunOutcome {
+  if (run.status === "running" || run.status === "failed") return { status: run.status, note: null };
+  const errors = run.errors ?? [];
+  const failedVcs = new Set(errors.filter((e) => VC_FATAL_ERROR_SOURCES.has(e.source ?? "")).map((e) => e.vc ?? e.message));
+  if (failedVcs.size > 0) return { status: "partial", note: `${failedVcs.size} VC${failedVcs.size === 1 ? "" : "s"} not updated` };
+
+  const bySource = new Map<string, boolean>(); // label → any rate-limit error
+  for (const e of errors) {
+    const label = e.source?.startsWith("gemini") ? "Gemini" : (SOURCE_LABEL[e.source ?? ""] ?? e.source ?? "unknown");
+    bySource.set(label, (bySource.get(label) ?? false) || RATE_LIMITED.test(e.message));
+  }
+  const limited = [...bySource].filter(([, rl]) => rl).map(([l]) => l);
+  const other = [...bySource].filter(([, rl]) => !rl).map(([l]) => l);
+  const part = (names: string[], what: string) =>
+    names.length ? `${names.length} source${names.length === 1 ? "" : "s"} ${what} (${names.join(", ")})` : null;
+  const note = [part(limited, "rate-limited"), part(other, "had errors")].filter(Boolean).join(" · ");
+  return { status: "complete", note: note || null };
+}

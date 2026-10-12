@@ -29,3 +29,6 @@ coverage/
 
 # launch video renders
 brag-output/
+
+# playwright-cli snapshots
+.playwright-cli/

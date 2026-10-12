@@ -42,7 +42,7 @@ src/
     scoring.ts    deterministic score / bucket / explanation (unit-tested)
     pipeline.ts   ingestVc() and scoreAndWrite()
     runs.ts       run lifecycle, chunk steps, fingerprint before/after
-    chain.ts      cron auth + self-chaining
+    chain.ts      cron auth + time-budgeted hand-off
 supabase/schema.sql · scripts/seed.ts · scripts/run-pipeline.ts · tests/scoring.test.ts
 ```
 

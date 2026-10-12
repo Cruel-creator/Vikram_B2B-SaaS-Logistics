@@ -1,5 +1,5 @@
 import { CheckIcon } from "@/components/ui";
-import { duration, fmtDateTime, relTime } from "@/lib/format";
+import { duration, fmtDateTime, relTime, runOutcome, type RunOutcome } from "@/lib/format";
 import { db } from "@/lib/supabase";
 import type { RunRow } from "@/lib/types";
 
@@ -12,8 +12,8 @@ async function getRuns(): Promise<RunRow[]> {
   return (data ?? []) as RunRow[];
 }
 
-const STATUS_STYLE: Record<RunRow["status"], string> = {
-  success: "bg-go-tint text-go",
+const STATUS_STYLE: Record<RunOutcome["status"], string> = {
+  complete: "bg-go-tint text-go",
   partial: "bg-watch-tint text-watch",
   failed: "bg-[#FDECEA] text-bad",
   running: "bg-[#EAF0FB] text-link",
@@ -58,7 +58,9 @@ export default async function RunsPage() {
           <span>Manual columns</span>
         </div>
         {runs.length === 0 && <div className="px-7 py-14 text-center text-[15px] text-slate">No runs yet.</div>}
-        {runs.map((r) => (
+        {runs.map((r) => {
+          const outcome = runOutcome(r);
+          return (
           <details key={r.id} className="group border-b border-line last:border-0">
             <summary className="grid grid-cols-2 gap-x-4 gap-y-2 px-7 py-5 transition-colors duration-150 hover:bg-lifted lg:grid-cols-[1.3fr_0.8fr_0.8fr_0.5fr_0.5fr_0.5fr_1.2fr] lg:items-center">
               <span>
@@ -69,10 +71,11 @@ export default async function RunsPage() {
                 {r.kind} <span className="text-slate">· {r.trigger}</span>
               </span>
               <span>
-                <span className={`inline-flex h-7 items-center gap-1.5 rounded-full px-3 text-[12.5px] font-medium ${STATUS_STYLE[r.status]}`}>
+                <span className={`inline-flex h-7 items-center gap-1.5 rounded-full px-3 text-[12.5px] font-medium ${STATUS_STYLE[outcome.status]}`}>
                   <span className={`h-1.5 w-1.5 rounded-full bg-current ${r.status === "running" ? "animate-pulse" : ""}`} />
-                  {r.status}
+                  {outcome.status}
                 </span>
+                {outcome.note && <span className="mt-1 block text-[12px] text-taupe">{outcome.note}</span>}
               </span>
               <span className="tnum text-[15px] lg:text-right">
                 {r.vcs_processed ?? 0}
@@ -129,7 +132,8 @@ export default async function RunsPage() {
               </div>
             </div>
           </details>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

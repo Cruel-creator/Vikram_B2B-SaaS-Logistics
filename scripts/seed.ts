@@ -28,7 +28,7 @@ const seed = JSON.parse(readFileSync(join(process.cwd(), "data", "vc_seed.json")
 
 const daysAgo = (n: number) => new Date(Date.now() - n * 86_400_000).toISOString().slice(0, 10);
 
-// Clearly-labelled demo values for the manual columns (Vikram edits these in Supabase).
+// Sample starting values for the manual columns (Vikram edits these in the app or Supabase).
 const WAITING_DAYS = [3, 5, 9, 12, 16, 19, 23, 27, 34, 41];
 const NOTES = [
   "Warm intro possible via a MESA mentor.",
@@ -56,8 +56,8 @@ const rows = seed.map((v, i) => {
     linkedin_url: v.linkedin_url,
     contact_status: waiting ? "waiting_for_response" : "yet_to_reach_out",
     last_contact_date: lastContact,
-    contact_history: waiting ? `[demo] ${lastContact}: cold email with 1-pager; no reply yet.` : null,
-    personal_notes: `[demo] ${NOTES[i % NOTES.length]}`,
+    contact_history: waiting ? `${lastContact}: cold email with 1-pager; no reply yet.` : null,
+    personal_notes: NOTES[i % NOTES.length],
   };
 });
 

@@ -1,4 +1,5 @@
 import { loadRelevantSignals, loadVcs, mapLimit, newIngestCtx, ingestVc, scoreAndWrite, type RunError } from "./pipeline";
+import { VC_FATAL_ERROR_SOURCES } from "./format";
 import { db, manualColumnsFingerprint } from "./supabase";
 import type { RunRow } from "./types";
 
@@ -133,7 +134,8 @@ export async function finishRun(runId: string, failure?: unknown) {
   if (failure) errors.push({ at: new Date().toISOString(), source: "run", message: String((failure as Error)?.message ?? failure) });
   await patchRun(runId, {
     finished_at: new Date().toISOString(),
-    status: failure ? "failed" : errors.length > 0 ? "partial" : "success",
+    // Throttled sources are noted in `errors` but don't make the run partial (see runOutcome).
+    status: failure ? "failed" : errors.some((e) => VC_FATAL_ERROR_SOURCES.has(e.source ?? "")) ? "partial" : "success",
     stage: "done",
     errors: errors.slice(-MAX_STORED_ERRORS),
     protected_check: { before_hash: before, after_hash: after, unchanged: Boolean(before && after && before === after) },

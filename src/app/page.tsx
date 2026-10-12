@@ -5,7 +5,7 @@ import { HeroMotion } from "@/components/motion/HeroMotion";
 import { AnimatedNumber } from "@/components/motion-primitives/animated-number";
 import BlurText from "@/components/react-bits/BlurText";
 import { getDashboardData, type DashboardData } from "@/lib/dashboard";
-import { BUCKET_META, fmtDateTime, relTime, RUN_KIND_LABEL, TZ } from "@/lib/format";
+import { BUCKET_META, fmtDateTime, relTime, RUN_KIND_LABEL, runOutcome, TZ } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -109,12 +109,13 @@ function RunCard({ data }: { data: DashboardData }) {
   const run = data.lastFinishedRun;
   const running = data.lastRun?.status === "running" && Date.now() - Date.parse(data.lastRun.started_at) < 20 * 60_000;
   const pc = run?.protected_check;
+  const outcome = run ? runOutcome(run) : null;
   const dot =
-    run?.status === "success"
+    outcome?.status === "complete"
       ? "var(--color-go)"
-      : run?.status === "partial"
+      : outcome?.status === "partial"
         ? "var(--color-watch-ring)"
-        : run?.status === "failed"
+        : outcome?.status === "failed"
           ? "var(--color-bad)"
           : "var(--color-taupe)";
 
@@ -123,7 +124,7 @@ function RunCard({ data }: { data: DashboardData }) {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0">
           <div className="eyebrow" style={{ ["--dot" as string]: dot }}>
-            Last run{run ? ` · ${run.status}` : ""}
+            Last run{outcome ? ` · ${outcome.status}` : ""}
           </div>
           <div className="mt-3 text-[30px] font-medium leading-none tracking-[-0.02em]">
             {run ? relTime(run.finished_at ?? run.started_at) : "Never"}
@@ -133,6 +134,7 @@ function RunCard({ data }: { data: DashboardData }) {
               ? `${fmtDateTime(run.finished_at ?? run.started_at)} IST · ${RUN_KIND_LABEL[run.kind]} · ${run.trigger === "cron" ? "automatic" : "manual"}`
               : "No runs yet"}
           </div>
+          {outcome?.note && <div className="mt-1 text-[12.5px] text-taupe">{outcome.note}</div>}
         </div>
         <RunNow initiallyRunning={running} />
       </div>

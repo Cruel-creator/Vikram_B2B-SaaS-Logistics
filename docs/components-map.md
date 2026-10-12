@@ -20,7 +20,7 @@ flowchart LR
     LI["LinkedIn via Apify<br/>(optional, APIFY_TOKEN)"]
   end
 
-  subgraph Vercel["Vercel serverless (maxDuration 300s, chunked + self-chaining)"]
+  subgraph Vercel["Vercel serverless (maxDuration 300s, 5-VC chunks, hands off to a fresh invocation every ~3 min)"]
     IN["/api/cron/ingest<br/>URL + date required · dedupe md5(url)"]
     G1["Gemini Flash · classify<br/>is_about_vc · type · relevance · summary"]
     SC["/api/cron/score<br/>scoring.ts (deterministic)"]
