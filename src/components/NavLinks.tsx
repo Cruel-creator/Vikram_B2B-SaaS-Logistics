@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AnimatedBackground } from "@/components/motion-primitives/animated-background";
 
 const LINKS = [
   { href: "/", label: "This week" },
@@ -11,22 +12,27 @@ const LINKS = [
 
 export function NavLinks() {
   const path = usePathname();
+  const active = LINKS.find((l) => (l.href === "/" ? path === "/" : path.startsWith(l.href)))?.href ?? "/";
+
   return (
-    <nav className="flex items-center gap-1 rounded-full border border-line bg-panel/60 p-1">
-      {LINKS.map((l) => {
-        const active = l.href === "/" ? path === "/" : path.startsWith(l.href);
-        return (
+    <nav className="flex items-center gap-0.5">
+      <AnimatedBackground
+        defaultValue={active}
+        className="rounded-full bg-ink"
+        transition={{ type: "spring", bounce: 0, duration: 0.35 }}
+      >
+        {LINKS.map((l) => (
           <Link
             key={l.href}
             href={l.href}
-            className={`rounded-full px-3 py-1.5 text-[13px] transition-colors ${
-              active ? "bg-fg text-ink" : "text-muted hover:text-fg"
-            }`}
+            data-id={l.href}
+            aria-current={active === l.href ? "page" : undefined}
+            className="flex min-h-10 items-center rounded-full px-3.5 text-[14px] font-medium tracking-[-0.01em] text-charcoal transition-colors duration-200 data-[checked=true]:text-canvas sm:px-4"
           >
             {l.label}
           </Link>
-        );
-      })}
+        ))}
+      </AnimatedBackground>
     </nav>
   );
 }

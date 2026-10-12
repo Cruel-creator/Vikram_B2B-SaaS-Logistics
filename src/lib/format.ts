@@ -60,22 +60,22 @@ export const BUCKET_META: Record<Bucket, { title: string; kicker: string; color:
   reach_out: {
     title: "Reach out this week",
     kicker: "01",
-    color: "var(--color-reach)",
-    dim: "var(--color-reach-dim)",
+    color: "var(--color-go)",
+    dim: "var(--color-go-tint)",
     blurb: "Score ≥ 60 with an active signal from the last 30 days. Lead with the signal.",
   },
   warm: {
     title: "Warm — watch",
     kicker: "02",
-    color: "var(--color-warm)",
-    dim: "var(--color-warm-dim)",
+    color: "var(--color-watch-ring)",
+    dim: "var(--color-watch-tint)",
     blurb: "Mid-scoring, cooling (31–60 day) signals, or contacted too recently to nudge.",
   },
   quiet: {
     title: "Quiet — deprioritize",
     kicker: "03",
-    color: "var(--color-quiet)",
-    dim: "var(--color-quiet-dim)",
+    color: "var(--color-rest)",
+    dim: "var(--color-rest-tint)",
     blurb: "No observable, relevant signal in the last 60 days. Revisit next run.",
   },
 };

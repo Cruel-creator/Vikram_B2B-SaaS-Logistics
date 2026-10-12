@@ -28,8 +28,9 @@ The header shows the last run, VCs processed, new signals, Firecrawl credits use
 - **Supabase** Postgres: `vcs` (Vikram's table), `signals` (raw evidence, never deleted), `runs` (audit log), `search_cache` (Firecrawl 72h cache).
 - **Gemini Flash** for all AI, via `@google/genai` with JSON `responseSchema`. It only *classifies* fetched evidence and drafts the next move. It never searches or recalls facts from memory.
 - **Vercel Cron:** `/api/cron/ingest` daily at 00:30 UTC (06:00 IST) and `/api/cron/score` Mon & Thu at 01:30 UTC (07:00 IST). Both require `Authorization: Bearer $CRON_SECRET`.
-- **Chunking:** each invocation processes 8 VCs (ingest) or 25 (score), does the work in `after()`, then calls itself with the next cursor. No invocation comes near the 300 s limit.
+- **Chunking:** each invocation processes 5 VCs (ingest) or 25 (score), does the work in `after()`, then calls itself with the next cursor. No invocation comes near the 300 s limit.
 - **Run now:** `POST /api/run` (Bearer `ADMIN_TOKEN`) runs a full ingest → score from the dashboard.
+- **UI:** light editorial design system documented in [`DESIGN.md`](DESIGN.md): warm cream canvas, ink pills, Sofia Sans. Motion uses Lenis smooth scroll on the GSAP ticker, GSAP ScrollTrigger reveals and hero timeline, React Bits `BlurText`/`SpotlightCard`, motion-primitives `AnimatedNumber`/`AnimatedBackground`, and one lazy Vanta NET backdrop. All of it respects `prefers-reduced-motion`.
 
 ```
 src/

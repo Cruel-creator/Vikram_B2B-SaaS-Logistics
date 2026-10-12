@@ -94,30 +94,30 @@ export function RunNow({ initiallyRunning }: { initiallyRunning: boolean }) {
   return (
     <div className="relative">
       {polling ? (
-        <div className="w-full min-w-[220px]">
-          <div className="mb-1.5 flex items-center justify-between font-mono text-[11px] text-muted">
-            <span className="flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-reach" />
+        <div className="w-full min-w-0 sm:min-w-[220px]" role="status" aria-live="polite">
+          <div className="mb-2 flex items-center justify-between text-[12.5px] text-charcoal">
+            <span className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-go opacity-50" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-go" />
+              </span>
               {scoring ? "Scoring & writing" : `Collecting signals ${done}/${total}`}
             </span>
-            <span>+{run?.signals_new ?? 0} new</span>
+            <span className="tnum text-slate">+{run?.signals_new ?? 0} new</span>
           </div>
-          <div className="h-1.5 overflow-hidden rounded-full bg-white/5">
-            <div className="h-full rounded-full bg-reach transition-all duration-700" style={{ width: `${pct}%` }} />
+          <div className="h-1.5 overflow-hidden rounded-full bg-ghost">
+            <div className="h-full rounded-full bg-go transition-[width] duration-700 ease-out" style={{ width: `${pct}%` }} />
           </div>
         </div>
       ) : (
-        <button
-          onClick={() => (token ? start(token) : setOpen(true))}
-          className="group inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-reach px-4 py-2 text-[13px] font-medium text-ink shadow-[0_0_0_1px_rgb(212_255_63/0.4),0_8px_30px_-8px_rgb(212_255_63/0.5)] transition-transform hover:-translate-y-px active:translate-y-0"
-        >
-          <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden>
+        <button type="button" onClick={() => (token ? start(token) : setOpen(true))} className="btn btn-ink">
+          <svg viewBox="0 0 16 16" width="11" height="11" aria-hidden className="translate-x-px">
             <path d="M4 2.5v11l9-5.5z" fill="currentColor" />
           </svg>
           Run now
         </button>
       )}
-      {msg && !polling && <div className="mt-2 font-mono text-[11px] text-muted">{msg}</div>}
+      {msg && !polling && <div className="mt-2 text-right text-[12.5px] text-slate">{msg}</div>}
 
       {open && (
         <form
@@ -125,9 +125,9 @@ export function RunNow({ initiallyRunning }: { initiallyRunning: boolean }) {
             e.preventDefault();
             if (token) start(token);
           }}
-          className="absolute right-0 top-full z-50 mt-2 w-72 rounded-2xl border border-line-strong bg-panel-2 p-4 shadow-2xl"
+          className="absolute right-0 top-full z-50 mt-3 w-[300px] rounded-[24px] border border-line bg-surface p-5 shadow-lift"
         >
-          <label className="eyebrow mb-2 block" htmlFor="admin-token">
+          <label className="micro mb-2 block" htmlFor="admin-token">
             Admin token
           </label>
           <input
@@ -136,17 +136,17 @@ export function RunNow({ initiallyRunning }: { initiallyRunning: boolean }) {
             autoFocus
             value={token}
             onChange={(e) => setToken(e.target.value)}
-            className="w-full rounded-lg border border-line bg-ink px-3 py-2 font-mono text-[12px] focus:border-line-strong focus:outline-none"
+            className="h-10 w-full rounded-full border border-line bg-canvas px-4 text-[14px] outline-none transition-[border-color] duration-150 focus:border-ink/40"
             placeholder="ADMIN_TOKEN"
           />
-          <p className="mt-2 text-[11.5px] leading-relaxed text-faint">
-            Runs ingest (Google News, GDELT, RSS, Firecrawl) → Gemini Flash → score. Takes a few minutes.
+          <p className="mt-3 text-[13px] leading-[1.45] text-slate">
+            Runs ingest (Google News, GDELT, RSS, Firecrawl), then Gemini Flash, then scoring. Takes a few minutes.
           </p>
-          <div className="mt-3 flex justify-end gap-2">
-            <button type="button" onClick={() => setOpen(false)} className="rounded-full px-3 py-1.5 text-[12px] text-muted hover:text-fg">
+          <div className="mt-4 flex justify-end gap-2">
+            <button type="button" onClick={() => setOpen(false)} className="btn px-4 text-slate hover:text-ink">
               Cancel
             </button>
-            <button type="submit" className="rounded-full bg-fg px-3 py-1.5 text-[12px] font-medium text-ink">
+            <button type="submit" className="btn btn-ink">
               Start run
             </button>
           </div>

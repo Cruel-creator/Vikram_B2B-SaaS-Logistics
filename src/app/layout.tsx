@@ -1,17 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Sofia_Sans } from "next/font/google";
 import { Nav } from "@/components/Nav";
+import { Reveals } from "@/components/motion/Reveals";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import "./globals.css";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
-const instrument = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-instrument",
-  display: "swap",
-});
+const sofia = Sofia_Sans({ subsets: ["latin"], variable: "--font-sofia", display: "swap" });
 
 export const metadata: Metadata = {
   title: "Pipeline Intel — who to pitch this week",
@@ -21,18 +15,26 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${instrument.variable}`}>
+    <html lang="en" className={sofia.variable} suppressHydrationWarning>
+      <head>
+        {/* Marks JS as available before first paint so GSAP-revealed blocks don't flash. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body className="min-h-dvh font-sans">
-        <div className="backdrop" aria-hidden />
-        <div className="grain" aria-hidden />
+        <SmoothScroll />
+        <Reveals />
         <Nav />
-        <main className="mx-auto w-full max-w-[1240px] px-4 pb-24 sm:px-6 lg:px-8">{children}</main>
-        <footer className="mx-auto w-full max-w-[1240px] px-4 pb-10 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-2 border-t border-line pt-6 text-xs text-faint sm:flex-row sm:items-center sm:justify-between">
-            <span className="font-mono">
-              Live sources: Google News · GDELT · blog RSS · Firecrawl — AI: Gemini Flash only — Data: Supabase
-            </span>
-            <span className="font-mono">MESA C4 · PS10 · built for Vikram</span>
+        <main className="mx-auto w-full max-w-[1280px] px-4 pb-28 pt-28 sm:px-8 lg:px-12">{children}</main>
+        <footer className="border-t border-line bg-lifted">
+          <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-6 px-4 py-12 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-12">
+            <div>
+              <p className="text-[28px] font-medium leading-tight tracking-[-0.02em]">Signals in. A short list out.</p>
+              <p className="mt-2 max-w-md text-[14px] text-slate">
+                Live sources: Google News, GDELT, blog RSS, Firecrawl. AI: Gemini Flash only. Data: Vikram&apos;s Supabase
+                table.
+              </p>
+            </div>
+            <p className="text-[13px] text-slate">MESA C4 · Problem Statement 10</p>
           </div>
         </footer>
       </body>

@@ -58,7 +58,7 @@ flowchart LR
 | Component | Responsibility | Code |
 |---|---|---|
 | Vercel Cron | Triggers ingest daily and score twice a week (Hobby: ≤ 1/day per cron) | `vercel.json` |
-| Ingest route | Pulls live evidence for 8 VCs per invocation, re-invokes itself with the next cursor | `src/app/api/cron/ingest`, `src/lib/chain.ts`, `src/lib/runs.ts` |
+| Ingest route | Pulls live evidence for 5 VCs per invocation, re-invokes itself with the next cursor | `src/app/api/cron/ingest`, `src/lib/chain.ts`, `src/lib/runs.ts` |
 | Sources | Google News RSS, GDELT, blog RSS, Firecrawl (fallback), LinkedIn (optional) | `src/lib/sources/*` |
 | Gemini Flash | Classifies evidence (entity check, type, relevance, summary) and drafts the next move | `src/lib/gemini.ts` |
 | Scoring | Deterministic score, bucket and explanation | `src/lib/scoring.ts` |
