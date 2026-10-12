@@ -150,6 +150,91 @@ alter table public.runs add column if not exists firecrawl_credits integer not n
 alter table public.runs add column if not exists vcs_total integer;
 alter table public.runs add column if not exists stage text;
 
+-- ─────────────────────────────────────────────────────────────
+-- 8. Vikram's in-app edits. SECURITY DEFINER so it can write the manual columns the
+--    service_role key itself cannot UPDATE. Called ONLY by POST /api/notes (ADMIN_TOKEN);
+--    the pipeline never calls it (tests/guardrails.test.ts).
+-- ─────────────────────────────────────────────────────────────
+create or replace function public.update_vc_manual(
+  p_vc_id             uuid,
+  p_personal_notes    text,
+  p_contact_status    text,
+  p_last_contact_date date
+) returns void
+language sql
+security definer
+set search_path = public
+as $$
+  update public.vcs
+     set personal_notes    = p_personal_notes,
+         contact_status    = p_contact_status,
+         last_contact_date = p_last_contact_date
+   where id = p_vc_id;
+$$;
+revoke execute on function public.update_vc_manual(uuid, text, text, date) from public, anon, authenticated;
+grant  execute on function public.update_vc_manual(uuid, text, text, date) to service_role;
+
+-- ─────────────────────────────────────────────────────────────
+-- 9. Outreach: contacts (published on the firm's site), firm brand (logo/accent for the
+--    deck cover), cached drafts, and a log of drafts/sends. None of these touch vcs.
+-- ─────────────────────────────────────────────────────────────
+create table if not exists public.contacts (
+  id            uuid primary key default gen_random_uuid(),
+  vc_id         uuid not null references public.vcs(id) on delete cascade,
+  firm          text not null,
+  name          text not null,
+  title         text,
+  email         text,
+  email_status  text,                 -- person | pitch | general | not_found
+  linkedin_url  text,
+  photo_url     text,
+  headline      text,
+  city          text,
+  source        text not null check (source in ('apollo','website','manual')),
+  source_ref    text,                 -- page the address was copied from
+  fetched_at    timestamptz not null default now(),
+  unique (vc_id, source)
+);
+
+create table if not exists public.firm_brands (
+  firm        text primary key,
+  domain      text,
+  logo_url    text,
+  logo_png    text,                   -- base64 PNG for the deck cover
+  logo_bg     text check (logo_bg in ('light','dark')),
+  logo_page   text,
+  accent      text,
+  source      text,
+  fetched_at  timestamptz not null default now()
+);
+
+create table if not exists public.outreach_drafts (
+  vc_id         uuid primary key references public.vcs(id) on delete cascade,
+  subject       text not null,
+  body          text not null,
+  linkedin_note text not null,
+  model         text,
+  generated_at  timestamptz not null default now()
+);
+
+create table if not exists public.outreach_log (
+  id           uuid primary key default gen_random_uuid(),
+  vc_id        uuid not null references public.vcs(id) on delete cascade,
+  contact_id   uuid references public.contacts(id) on delete set null,
+  channel      text not null check (channel in ('gmail_draft','gmail_send','eml_download','linkedin_copy')),
+  to_email     text,
+  subject      text,
+  body         text,
+  external_id  text,
+  created_at   timestamptz not null default now()
+);
+
+alter table public.contacts        enable row level security;
+alter table public.firm_brands     enable row level security;
+alter table public.outreach_drafts enable row level security;
+alter table public.outreach_log    enable row level security;
+revoke all on public.contacts, public.firm_brands, public.outreach_drafts, public.outreach_log from anon, authenticated;
+
 -- Sanity test you can run after seeding (should ERROR with "permission denied"):
 --   set role service_role;
 --   update public.vcs set personal_notes = 'x' where true;
