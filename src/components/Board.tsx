@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
+import { OutreachPanel } from "./outreach/OutreachPanel";
 import type { VcView } from "@/lib/dashboard";
 import { BUCKET_META } from "@/lib/format";
 import type { Bucket, ContactStatus } from "@/lib/types";
@@ -19,6 +20,8 @@ export function Board({ vcs }: { vcs: VcView[] }) {
   const [filter, setFilter] = useState<FilterKey>("all");
   const [q, setQ] = useState("");
   const [showQuiet, setShowQuiet] = useState(false);
+  const [outreachId, setOutreachId] = useState<string | null>(null);
+  const closeOutreach = useCallback(() => setOutreachId(null), []);
 
   const visible = useMemo(() => {
     const needle = q.trim().toLowerCase();
@@ -88,7 +91,7 @@ export function Board({ vcs }: { vcs: VcView[] }) {
         {reach.length ? (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
             {reach.map((v, i) => (
-              <VcCard key={v.id} vc={v} rank={i + 1} variant="feature" />
+              <VcCard key={v.id} vc={v} rank={i + 1} variant="feature" onOutreach={setOutreachId} />
             ))}
           </div>
         ) : (
@@ -100,7 +103,7 @@ export function Board({ vcs }: { vcs: VcView[] }) {
         {warm.length ? (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
             {warm.map((v, i) => (
-              <VcCard key={v.id} vc={v} rank={reach.length + i + 1} variant="compact" />
+              <VcCard key={v.id} vc={v} rank={reach.length + i + 1} variant="compact" onOutreach={setOutreachId} />
             ))}
           </div>
         ) : (
@@ -111,7 +114,7 @@ export function Board({ vcs }: { vcs: VcView[] }) {
       <Section bucket="quiet" count={quiet.length}>
         <div className="card px-5 py-1 sm:px-7">
           {(showQuiet ? quiet : quiet.slice(0, 8)).map((v) => (
-            <QuietRow key={v.id} vc={v} />
+            <QuietRow key={v.id} vc={v} onOutreach={setOutreachId} />
           ))}
           {quiet.length === 0 && <div className="py-8 text-center text-[14px] text-slate">Everyone has made some noise.</div>}
         </div>
@@ -123,6 +126,7 @@ export function Board({ vcs }: { vcs: VcView[] }) {
           </div>
         )}
       </Section>
+      <OutreachPanel vcId={outreachId} onClose={closeOutreach} />
     </div>
   );
 }

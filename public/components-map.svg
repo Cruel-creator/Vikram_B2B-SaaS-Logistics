@@ -131,16 +131,25 @@
   <rect x="960" y="150" width="210" height="122" rx="14" class="box" stroke="#B84A12" stroke-opacity=".3"/>
   <text x="978" y="176" class="t">Dashboard</text>
   <text x="978" y="197" class="s">Next.js 15 on Vercel</text>
-  <text x="978" y="215" class="m">/  ·  /runs  ·  /about</text>
+  <text x="978" y="215" class="m">/  ·  /runs</text>
   <text x="978" y="236" class="s">Reach out · Warm · Quiet</text>
-  <text x="978" y="254" class="s">notes shown read-only</text>
-  <path d="M925 540 C 960 470, 1000 360, 1050 276" class="ln" marker-end="url(#a)"/>
-  <text x="1002" y="430" class="m">server-side read</text>
+  <text x="978" y="254" class="s">notes editable (admin token)</text>
+  <path d="M928 540 C 945 430, 938 330, 957 262" class="ln" marker-end="url(#a)"/>
+
+  <!-- Outreach -->
+  <rect x="960" y="296" width="210" height="150" rx="14" class="box" stroke="#3860BE" stroke-opacity=".45"/>
+  <text x="978" y="322" class="t">Outreach panel</text>
+  <text x="978" y="343" class="s">contacts: firm site, exact match</text>
+  <text x="978" y="361" class="s">Gemini draft + anti-slop lint</text>
+  <text x="978" y="379" class="s">pdf-lib deck, cover per firm</text>
+  <text x="978" y="397" class="s">Gmail draft/send (admin token)</text>
+  <text x="978" y="415" class="s">LinkedIn note: copy + open</text>
+  <text x="978" y="433" class="m">tables: contacts · firm_brands</text>
 
   <rect x="960" y="560" width="210" height="116" rx="14" class="box"/>
   <text x="978" y="586" class="t">Vikram</text>
-  <text x="978" y="607" class="s">edits status, last contact,</text>
-  <text x="978" y="624" class="s">history &amp; notes in the</text>
-  <text x="978" y="641" class="s">Supabase Table Editor</text>
+  <text x="978" y="607" class="s">edits notes, status, last</text>
+  <text x="978" y="624" class="s">contact in the app (RPC</text>
+  <text x="978" y="641" class="s">update_vc_manual) or Supabase</text>
   <path d="M958 618 H914" class="ln" marker-end="url(#a)"/>
 </svg>

@@ -3,11 +3,22 @@
 import type { VcView } from "@/lib/dashboard";
 import { fmtDate, SOURCE_LABEL } from "@/lib/format";
 import SpotlightCard from "@/components/react-bits/SpotlightCard";
-import { ArrowUpRight, LockIcon, Monogram, ScoreRing, StatusPill, TypeBadge, WindowTag } from "./ui";
+import { NotesEditor } from "./NotesEditor";
+import { ArrowUpRight, Monogram, ScoreRing, StatusPill, TypeBadge, WindowTag } from "./ui";
 
-export function VcCard({ vc, rank, variant }: { vc: VcView; rank: number; variant: "feature" | "compact" }) {
+export function VcCard({
+  vc,
+  rank,
+  variant,
+  onOutreach,
+}: {
+  vc: VcView;
+  rank: number;
+  variant: "feature" | "compact";
+  onOutreach: (id: string) => void;
+}) {
   const feature = variant === "feature";
-  const body = <CardBody vc={vc} rank={rank} feature={feature} />;
+  const body = <CardBody vc={vc} rank={rank} feature={feature} onOutreach={onOutreach} />;
 
   if (feature) {
     return (
@@ -28,7 +39,7 @@ export function VcCard({ vc, rank, variant }: { vc: VcView; rank: number; varian
   return <article className="card card-lift h-full">{body}</article>;
 }
 
-function CardBody({ vc, rank, feature }: { vc: VcView; rank: number; feature: boolean }) {
+function CardBody({ vc, rank, feature, onOutreach }: { vc: VcView; rank: number; feature: boolean; onOutreach: (id: string) => void }) {
   const evidence = vc.evidence.slice(0, feature ? 3 : 2);
   return (
     <div className={`flex h-full flex-col ${feature ? "p-7 sm:p-8" : "p-6 sm:p-7"}`}>
@@ -115,37 +126,27 @@ function CardBody({ vc, rank, feature }: { vc: VcView; rank: number; feature: bo
         </div>
       )}
 
-      {/* Notes (read-only) + score math */}
+      {/* Vikram's notes (editable) + outreach */}
       <div className="mt-auto pt-6">
-        {(vc.personalNotes || vc.contactHistory) && (
-          <div className="rounded-[20px] border border-dashed border-taupe p-4">
-            <div className="micro mb-1.5 flex items-center gap-1.5">
-              <LockIcon /> Vikram&apos;s notes · read-only
-            </div>
-            {vc.personalNotes && <p className="text-[13.5px] leading-[1.45] text-charcoal">{vc.personalNotes}</p>}
-            {vc.contactHistory && <p className="mt-1 text-[12.5px] leading-[1.45] text-slate">{vc.contactHistory}</p>}
-          </div>
-        )}
-        <details className="group/d mt-3">
-          <summary className="flex min-h-10 items-center gap-1.5 text-[12.5px] font-medium text-slate transition-colors duration-150 hover:text-ink">
-            <span className="inline-block transition-transform duration-200 group-open/d:rotate-90">›</span> How this score was
-            computed
-          </summary>
-          <ul className="tnum space-y-1 pb-1 pl-4 text-[12.5px] leading-[1.5] text-charcoal">
-            {vc.explanation.map((x) => (
-              <li key={x}>{x}</li>
-            ))}
-            <li className="text-slate">score = round(100 × clamp(base)) = {vc.score ?? "pending"}</li>
-          </ul>
-        </details>
+        <NotesEditor
+          vcId={vc.id}
+          notes={vc.personalNotes}
+          history={vc.contactHistory}
+          status={vc.status}
+          lastContactDate={vc.lastContactDate}
+        />
+        <button type="button" onClick={() => onOutreach(vc.id)} className="btn btn-ink mt-4 w-full">
+          Draft outreach
+          <ArrowUpRight />
+        </button>
       </div>
     </div>
   );
 }
 
-export function QuietRow({ vc }: { vc: VcView }) {
+export function QuietRow({ vc, onOutreach }: { vc: VcView; onOutreach: (id: string) => void }) {
   return (
-    <div className="grid grid-cols-[auto_1fr_auto] items-center gap-4 border-b border-line py-3.5 last:border-0 sm:grid-cols-[auto_minmax(0,1.3fr)_minmax(0,1fr)_auto_auto_auto]">
+    <div className="grid grid-cols-[auto_1fr_auto_auto] items-center gap-4 border-b border-line py-3.5 last:border-0 sm:grid-cols-[auto_minmax(0,1.3fr)_minmax(0,1fr)_auto_auto_auto_auto]">
       <Monogram name={vc.name} size={36} />
       <div className="min-w-0">
         <div className="truncate text-[15px] font-medium tracking-[-0.01em]">{vc.name}</div>
@@ -159,6 +160,13 @@ export function QuietRow({ vc }: { vc: VcView }) {
         {vc.lastSignalDate ? `Last signal ${fmtDate(vc.lastSignalDate)}` : "No signal"}
       </div>
       <div className="tnum w-10 text-right text-[16px] font-medium text-rest">{vc.score ?? "–"}</div>
+      <button
+        type="button"
+        onClick={() => onOutreach(vc.id)}
+        className="rounded-full px-3 py-2 text-[13px] font-medium text-charcoal transition-colors duration-150 hover:bg-canvas hover:text-ink"
+      >
+        Outreach
+      </button>
     </div>
   );
 }

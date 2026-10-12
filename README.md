@@ -2,7 +2,7 @@
 
 > MESA Cohort C4 · Problem Statement 10
 
-**Live:** _<Vercel URL>_ · **Components Map:** [`docs/components-map.md`](docs/components-map.md) · also on `/about`
+**Live:** https://vikram-b2b-saas-logistics.vercel.app · **Components Map + scoring rubric (PDF):** [`docs/pipeline-intel-method.pdf`](docs/pipeline-intel-method.pdf) · Mermaid source: [`docs/components-map.md`](docs/components-map.md)
 
 ## The problem
 
@@ -94,7 +94,19 @@ Why look back 60 days if only 30 count? Investors post in bursts, so the cooling
 2. **Single write path:** all `vcs` writes go through the `update_vc_signals()` RPC. Seeding is insert-only (`ON CONFLICT DO NOTHING`).
 3. **Proof per run:** `manual_columns_fingerprint()` runs before and after, the result is stored in `runs.protected_check`, and the dashboard shows "Manual columns unchanged ✓".
 
-Notes are edited in the Supabase Table Editor ("his Supabase table"), not in the app. The app shows them read-only.
+Vikram can edit his notes, status and last-contact date **in the app** (the "Edit" button on each card) or in the Supabase Table Editor. In-app edits go through a separate `SECURITY DEFINER` function, `update_vc_manual()`, called only by `POST /api/notes` (admin token). A guardrail test fails the build if any other file references it. The pipeline's key still physically can't write those columns.
+
+## Outreach (email + LinkedIn + personalised deck)
+
+Every card has a **Draft outreach** button that opens a panel with:
+
+- **To:** the best address *published on the firm's own website*. It's copied verbatim from `mailto:` links, page text or Cloudflare-obfuscated addresses, in this order of preference: the person's own address, then the pitch inbox, then the general inbox. Nothing is guessed. 18/50 investors have one; the field stays editable for the rest. Source: `npm run contacts` (`scripts/find-contacts.ts`), stored in `contacts`.
+- **Email draft:** written by Gemini Flash from the investor's top signal under strict style rules (60–120 words, plain verbs, no flattery). A linter then rejects AI tells: "hope this finds you", "reaching out", "excited", "leverage", em dashes, exclamation marks, over-length. It only claims a link to Freightlane when the signal supports one; otherwise it says plainly why it's writing. If Gemini fails the linter twice, a hand-written template is used. Founder facts live in `src/lib/outreach/founder.ts`; unknown numbers stay as `[placeholders]`, and **Send is blocked until they're filled**, so no invented traction reaches a real investor.
+- **Attached deck:** an illustrative 8-slide PDF (`pdf-lib`) whose **cover is personalised**: "Prepared for {name} · {title} · {firm}", the firm's real logo (from its site, on an ink chip if the logo is white) and the firm's accent colour as a band, in Freightlane's own style. The panel previews that first slide. `GET /api/deck/{vcId}`.
+- **Send:** *Create Gmail draft* (deck attached, opens in Gmail) or *Send now*, both through the Gmail API with an OAuth refresh token and the admin token. Without Gmail connected, *Download .eml* gives a draft with the attachment that opens in Outlook or Apple Mail.
+- **LinkedIn box:** the person's profile card with *Open profile*, and a connection note under 300 characters with *Copy*. LinkedIn has no API for sending messages, so Vikram pastes it.
+
+Connect Gmail (one time): enable the Gmail API in Google Cloud, set the OAuth consent screen to Testing with Vikram as a test user, create a **Desktop** OAuth client, put `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` in `.env.local`, then run `npm run gmail:auth`. It writes `GOOGLE_REFRESH_TOKEN`. Add all three to Vercel env.
 
 ## How to run
 
@@ -129,15 +141,23 @@ curl -H "Authorization: Bearer $CRON_SECRET" https://<app>/api/cron/ingest
 | Vercel Hobby limits (cron ≤ 1/day, 300 s) | Two daily-or-less crons. Chunked steps run in `after()` and self-chain with a cursor. |
 | Overwriting notes | Column GRANTs + single RPC + fingerprint check. |
 | TypeScript 7 (native) incompatible with Next 15's build | Pinned `typescript@5`. |
+| Machine-level `GEMINI_API_KEY` shadowed `.env.local` (dotenv/Next never override) → 401 | Scripts load `.env.local` with `override: true`; the dev server starts with the stale variable cleared. |
+| Gemini first rubric capped relevance at ~0.4 → nobody reached "Reach out" | Banded relevance rubric, re-labelled stored signals in place (`scripts/reclassify.ts`), no deletions. |
+| Same deal covered by several outlets showed twice | Story-level de-duplication (`storyKey`), unit-tested. |
+| Gemini guessed gendered pronouns for real people | Prompt rule plus re-label; a DB check shows 0 remaining. |
+| Apollo free plan blocks enrichment and people search over the API/MCP (0 credits spent) | Emails copied verbatim from firms' own sites; the `contacts` table accepts Apollo rows if the plan is upgraded. |
+| LinkedIn has no message API (and automation breaks its ToS) | Draft-and-copy box with an open-profile link. |
+| Vercel env values added via PowerShell got a trailing newline (`CRON_SECRET` rejected) | Re-set with `vercel env update` from newline-free input. |
+| White logos vanished on the deck's white chip | Logo luminance measured with `sharp`, light-on-dark logos get an ink chip. |
 
 ## Deliverables checklist
 
 - [x] `schema.sql` applied, permission test fails as expected
-- [ ] 50 VCs seeded
-- [ ] Live URL shows real signals with source links and dates
-- [ ] Manual-column protection proven: edit a note in Supabase → Run now → note unchanged, fingerprint ✓
-- [x] `vercel.json` crons present; cron routes reject requests without the secret
-- [x] `grep -ri "anthropic\|openai" src package.json` returns nothing
+- [x] 50 VCs seeded
+- [x] Live URL shows real signals with source links and dates
+- [x] Manual-column protection proven on production: edited Sajith Pai's note in Supabase → score cron (Vercel, chained chunks, 173 s) → note unchanged, fingerprint before = after ✓
+- [x] `vercel.json` crons present; cron routes return 401 without the secret
+- [x] `grep -ri "anthropic\|openai" src package.json` returns nothing (also enforced by `tests/guardrails.test.ts`)
 - [x] README
-- [x] Components Map (`docs/components-map.md` with Mermaid + rendered SVG)
+- [x] Components Map: `docs/pipeline-intel-method.pdf` (map + scoring rubric) and `docs/components-map.md` (Mermaid + SVG)
 - [x] No secrets in git history
