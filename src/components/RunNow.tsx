@@ -109,7 +109,7 @@ export function RunNow({ initiallyRunning }: { initiallyRunning: boolean }) {
       ) : (
         <button
           onClick={() => (token ? start(token) : setOpen(true))}
-          className="group inline-flex items-center gap-2 rounded-full bg-reach px-4 py-2 text-[13px] font-medium text-ink shadow-[0_0_0_1px_rgb(212_255_63/0.4),0_8px_30px_-8px_rgb(212_255_63/0.5)] transition-transform hover:-translate-y-px active:translate-y-0"
+          className="group inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-reach px-4 py-2 text-[13px] font-medium text-ink shadow-[0_0_0_1px_rgb(212_255_63/0.4),0_8px_30px_-8px_rgb(212_255_63/0.5)] transition-transform hover:-translate-y-px active:translate-y-0"
         >
           <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden>
             <path d="M4 2.5v11l9-5.5z" fill="currentColor" />
