@@ -3,9 +3,9 @@ import { db, manualColumnsFingerprint } from "./supabase";
 import type { RunRow } from "./types";
 
 /**
- * Runs are processed as a chain of short steps (chunks of VCs) so no single
- * serverless invocation approaches Vercel's 300 s limit. Each step returns the
- * next cursor; the route handler re-invokes itself with it.
+ * Runs are processed as short steps (chunks of VCs), each returning the next cursor.
+ * An invocation works through steps until its time budget is spent, then re-invokes
+ * the route with the cursor (see chain.ts), so a full run needs only 2–3 invocations.
  */
 
 export type Stage = "ingest" | "score";

@@ -31,14 +31,27 @@ export async function kick(origin: string, step: Step) {
   if (!res.ok) throw new Error(`chain kick ${res.status} for ${step.stage}@${step.offset}`);
 }
 
-/** Process one step after the response is sent, then hand off to the next invocation. */
+// Vercel rejects a deployment calling itself more than ~5 hops deep (HTTP 508), so keep
+// processing chunks in this invocation and only hand off once this much time is spent.
+// A worst-case ingest chunk is ~70 s, so the last chunk still ends well inside 300 s.
+const HANDOFF_AFTER_MS = 180_000;
+
+/** Process steps after the response is sent; hand off to a fresh invocation when the budget runs out. */
 export function scheduleStep(origin: string, step: Step) {
   after(async () => {
+    const t0 = Date.now();
+    let current: Step | null = step;
     try {
-      const next = await runStep(step);
-      if (next) await kick(origin, next);
+      while (current) {
+        const next = await runStep(current);
+        if (next && Date.now() - t0 > HANDOFF_AFTER_MS) {
+          await kick(origin, next);
+          return;
+        }
+        current = next;
+      }
     } catch (e) {
-      console.error("[pipeline] step failed", step, e);
+      console.error("[pipeline] step failed", current, e);
       await finishRun(step.runId, e).catch(() => {});
     }
   });
