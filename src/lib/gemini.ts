@@ -225,7 +225,15 @@ ${signals}
 
 Rules: ≤30 words, imperative voice, cite the top signal concretely as the hook, tailor to the contact status (cold intro vs. polite nudge vs. continue conversation). Refer to the investor by first name or "they" — never guess gendered pronouns. No greetings, no quotes, no emojis.`;
   const out = await generateJson<{ action: string }>(prompt, actionSchema, 3);
-  return out.action.split(/\s+/).slice(0, 34).join(" ").trim();
+  return clipWords(out.action.trim(), MAX_ACTION_WORDS);
+}
+
+/** The brief caps recommended_action at 30 words. */
+export const MAX_ACTION_WORDS = 30;
+
+function clipWords(text: string, max: number): string {
+  const w = text.split(/\s+/).filter(Boolean);
+  return w.length <= max ? text : `${w.slice(0, max).join(" ").replace(/[\s,;:.—–-]+$/, "")}…`;
 }
 
 /** Deterministic fallback when Gemini is unavailable or there is no signal to cite. */
@@ -237,7 +245,12 @@ export function templateAction(args: {
 }): string {
   const { vc, top, bucket, contactAgeDays } = args;
   const first = vc.name.replace(/\s*\([^)]*\)/, "").split(" ")[0];
-  const hook = top ? (top.summary || top.title || "").replace(/\.$/, "") : "";
+  const signal = top ? (top.summary || top.title || "").replace(/\.$/, "") : "";
+  // Shorten the quoted signal so the whole action fits the word cap.
+  const fit = (make: (hook: string) => string) => {
+    const fixed = make("").split(/\s+/).filter(Boolean).length;
+    return make(clipWords(signal, Math.max(5, MAX_ACTION_WORDS - fixed))).replace(/…\./g, "…").replace(/…"/g, '…"');
+  };
   if (vc.contact_status === "passed") return `Passed — no outreach. Revisit only if ${first} publishes a logistics/supply-chain thesis.`;
   if (!top) {
     if (vc.contact_status === "waiting_for_response")
@@ -246,11 +259,13 @@ export function templateAction(args: {
     return `Deprioritize: no public activity in 60 days. Re-check next run before cold outreach.`;
   }
   if (vc.contact_status === "waiting_for_response") {
-    if (contactAgeDays !== null && contactAgeDays < 7) return `Give ${first} time (contacted ${contactAgeDays}d ago). If no reply by day 14, nudge referencing: ${hook}.`;
-    return `Nudge ${first} on the existing thread, referencing: ${hook}. Add one new traction metric.`;
+    if (contactAgeDays !== null && contactAgeDays < 7)
+      return fit((h) => `Give ${first} time (contacted ${contactAgeDays}d ago). If no reply by day 14, nudge referencing: ${h}.`);
+    return fit((h) => `Nudge ${first} on the existing thread, referencing: ${h}. Add one new traction metric.`);
   }
-  if (vc.contact_status === "in_conversation") return `Reference "${hook}" in your next update to ${first} and propose a concrete next step.`;
+  if (vc.contact_status === "in_conversation")
+    return fit((h) => `Reference "${h}" in your next update to ${first} and propose a concrete next step.`);
   return bucket === "reach_out"
-    ? `Cold-email ${first} this week, opening with: ${hook}. Tie it to your logistics SaaS traction.`
-    : `Watch ${first}: ${hook}. Reach out if a fresher, logistics-relevant signal appears.`;
+    ? fit((h) => `Cold-email ${first} this week, opening with: ${h}. Tie it to your logistics SaaS traction.`)
+    : fit((h) => `Watch ${first}: ${h}. Reach out if a fresher, logistics-relevant signal appears.`);
 }

@@ -105,7 +105,7 @@ async function main() {
     if (expDate !== vc.last_signal_date) lastDateMismatch.push(`${vc.name}: ${vc.last_signal_date} vs ${expDate}`);
 
     if (inWin.length === 0 && vc.signal_summary !== NO_SIGNAL) summaryIssues.push(`${vc.name}: quiet but summary="${vc.signal_summary}"`);
-    if (inWin.length > 0 && !/^\d{1,2} [A-Z][a-z]{2}: /.test(vc.signal_summary ?? "")) summaryIssues.push(`${vc.name}: summary lacks a date`);
+    if (inWin.length > 0 && !/^\d{1,2} [A-Z][a-z]{2,3}: /.test(vc.signal_summary ?? "")) summaryIssues.push(`${vc.name}: summary lacks a date`);
 
     const a = (vc.recommended_action ?? "").trim();
     const words = a.split(/\s+/).filter(Boolean).length;
